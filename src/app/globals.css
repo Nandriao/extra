@@ -68,3 +68,42 @@ body {
     --chart-5: 340 75% 55%;
   }
 }
+
+@font-face {
+  font-family: "baloo";
+  src: url("./fonts/baloo.ttf") format("opentype"),
+    url("./fonts/baloo.ttf") format("truetype");
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "inter";
+  src: url("./fonts/inter.ttf") format("opentype"),
+    url("./fonts/inter.ttf") format("truetype");
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "poppins";
+  src: url("./fonts/poppins.ttf") format("opentype"),
+    url("./fonts/poppins.ttf") format("truetype");
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "confortaa";
+  src: url("./fonts/confortaa.ttf") format("opentype"),
+    url("./fonts/confortaa.ttf") format("truetype");
+  font-weight: normal;
+  font-style: normal;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "inter";
+}
