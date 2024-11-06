@@ -56,7 +56,7 @@ export default function Login() {
     <main className="flex flex-col min-h-[75vh] w-full items-center justify-center p-4">
       <Form {...form}>
         <div className="flex flex-col gap-4 items-center justify-center mb-11">
-          <h1 className="text-2xl font-bold text-purple-500">
+          <h1 className="text-2xl font-bold text-primary">
             Olá, bem vindo de volta!
           </h1>
 
@@ -80,7 +80,7 @@ export default function Login() {
                     type="tel"
                     placeholder="Digite seu número"
                     inputMode="numeric"
-                    className="placeholder:text-gray-500 text-base bg-purple-100 h-12 border-none"
+                    className="placeholder:text-gray-500 text-base bg-gray-100 h-12 border-none"
                   />
                 </FormControl>
                 <FormMessage />
@@ -100,7 +100,7 @@ export default function Login() {
                       {...field}
                       type={showPassword ? "text" : "password"}
                       placeholder="Digite sua senha"
-                      className="placeholder:text-gray-500 text-base bg-purple-100 h-12 border-none"
+                      className="placeholder:text-gray-500 text-base bg-gray-100 h-12 border-none"
                     />
                     <Button
                       type="button"
@@ -125,7 +125,7 @@ export default function Login() {
                 <div className="flex justify-end">
                   <Link
                     href="#"
-                    className="text-base text-purple-600 px-0 py-1"
+                    className="text-base text-primary px-0 py-1"
                   >
                     Esqueceu sua senha?
                   </Link>
@@ -142,7 +142,7 @@ export default function Login() {
             <span className="text-gray-700">Ainda não tem uma conta?</span>
             <Link
               href="/authentication/register"
-              className="text-base text-purple-600 px-0"
+              className="text-base text-primary px-0"
             >
               Cadastre-se
             </Link>

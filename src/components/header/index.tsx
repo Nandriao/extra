@@ -47,12 +47,12 @@ function Header() {
                 className="p-2"
               />
 
-              <p className={`text-[${Colors.PRYMARY}] pr-3`}>Entrar</p>
+              <p className={`text-primary pr-3`}>Entrar</p>
             </Link>
 
             <Link
               href={"/"}
-              className={`flex items-center rounded-md bg-purple-500 shadow-sm active:opacity-50`}
+              className={`flex items-center rounded-md bg-primary shadow-sm active:opacity-50`}
             >
               <AiOutlineUserAdd
                 color={Colors.WHITE}
