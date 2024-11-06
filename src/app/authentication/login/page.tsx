@@ -80,7 +80,7 @@ export default function Login() {
                     type="tel"
                     placeholder="Digite seu número"
                     inputMode="numeric"
-                    className="placeholder:text-gray-500 text-base bg-purple-100 h-10 border-none"
+                    className="placeholder:text-gray-500 text-base bg-purple-100 h-12 border-none"
                   />
                 </FormControl>
                 <FormMessage />
@@ -100,7 +100,7 @@ export default function Login() {
                       {...field}
                       type={showPassword ? "text" : "password"}
                       placeholder="Digite sua senha"
-                      className="placeholder:text-gray-500 text-base bg-purple-100 h-10 border-none"
+                      className="placeholder:text-gray-500 text-base bg-purple-100 h-12 border-none"
                     />
                     <Button
                       type="button"
@@ -134,7 +134,7 @@ export default function Login() {
             )}
           />
 
-          <Button type="submit" className="w-full text-base h-10">
+          <Button type="submit" className="w-full text-base h-12">
             Entrar
           </Button>
 
