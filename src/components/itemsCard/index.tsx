@@ -21,7 +21,7 @@ function ItemsCard({
   category,
 }: Props) {
   return (
-    <div className="bg-gray-200 rounded-md min-w-[48%] pt-2 shadow-md">
+    <div className="bg-gray-200 rounded-md min-w-[48%] active:opacity-50 transition-all pt-2 shadow-md">
       <div className="flex flex-row justify-between items-center">
         <Image src={logo} alt={logoAlt} className="w-[150px] px-2 " />
         <Image src={Cuponomia} alt="Cuponomia" className="w-[120px] px-2 " />

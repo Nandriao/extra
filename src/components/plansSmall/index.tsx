@@ -16,7 +16,7 @@ export default function PlansSmall({ active, name, logo, clickFunction }: Props)
       onClick={clickFunction}
       className={`${
         active === 1 ? "text-white bg-primary" : "bg-gray-200 text-primary"
-      } shadow-md gap-1`}
+      } shadow-md gap-1 active:opacity-50 transition-all`}
     >
       {name}
       <Image src={logo} alt="name" className="w-[20px]" />

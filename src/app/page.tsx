@@ -3,25 +3,21 @@
 // import { Skeleton } from "@/components/ui/skeleton";
 import React, { useState } from "react";
 import Image from "next/image";
-import Link from "next/link";
 
 import { ScrollArea, ScrollBar } from "@/components/ui/scroll-area";
 import { Button } from "@/components/ui/button";
 
 import { AiOutlineEye, AiOutlineEyeInvisible } from "react-icons/ai";
-// import { FaBell, FaChevronDown } from "react-icons/fa6";
 
 import Colors from "@/constants/Colors";
 
 import Coins from "@/assets/money2.png";
-// import Deposit from "@/assets/new/Savings-rafiki.svg";
 import Deposit from "@/assets/new/Piggy bank-amico.svg";
 import Withdraw from "@/assets/new/ATM machine-pana (1).svg";
 import Send from "@/assets/new/Finance leaders-amico.svg";
 
 import Aliexpress from "@/assets/enterprise/7044032_aliexpress_logo_icon.svg";
 import Amazon from "@/assets/enterprise/amazon.png";
-// import Adidas from "@/assets/enterprise/adidas.png";
 import Magalu from "@/assets/enterprise/magalu.png";
 
 import Bronze from "@/assets/medalhas/bronze.png";
@@ -35,6 +31,7 @@ import { ChevronRight } from "lucide-react";
 import ItemsCard from "@/components/itemsCard";
 import PlansSmall from "@/components/plansSmall";
 import OperationCard from "@/components/OperationCard";
+import Loading from "./loading";
 
 export default function Home() {
   const [show, setShow] = useState<boolean>(true);

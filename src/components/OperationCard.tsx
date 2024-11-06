@@ -12,7 +12,7 @@ const OperationCard = ({ href, imageSrc, imageAlt, title }: OperationCardProps) 
   return (
     <Link
       href={href}
-      className="flex flex-col items-center shadow-md active:opacity-50 bg-gray-100 rounded-md p-2"
+      className="flex flex-col items-center shadow-md active:opacity-50 transition-all bg-gray-200 rounded-md p-2"
       tabIndex={0}
       role="button"
       aria-label={`${title} operation`}
