@@ -132,7 +132,7 @@ export default function Home() {
                 className={`${
                   active === 1
                     ? "text-white bg-primary"
-                    : "bg-purple-100 text-primary"
+                    : "bg-gray-100 text-primary"
                 } shadow-md gap-1`}
               >
                 Bronze
@@ -146,7 +146,7 @@ export default function Home() {
                 className={`${
                   active === 2
                     ? "text-white bg-primary"
-                    : "bg-purple-100 text-primary"
+                    : "bg-gray-100 text-primary"
                 } shadow-md gap-1`}
               >
                 Silver
@@ -160,7 +160,7 @@ export default function Home() {
                 className={`${
                   active === 3
                     ? "text-white bg-primary"
-                    : "bg-purple-100 text-primary"
+                    : "bg-gray-100 text-primary"
                 } shadow-md gap-1`}
               >
                 Gold
@@ -174,7 +174,7 @@ export default function Home() {
                 className={`${
                   active === 4
                     ? "text-white bg-primary"
-                    : "bg-purple-100 text-primary"
+                    : "bg-gray-100 text-primary"
                 } shadow-md gap-1`}
               >
                 Platinum
@@ -188,7 +188,7 @@ export default function Home() {
                 className={`${
                   active === 5
                     ? "text-white bg-primary"
-                    : "bg-purple-100 text-primary"
+                    : "bg-gray-100 text-primary"
                 } shadow-md gap-1`}
               >
                 Emerald
@@ -202,7 +202,7 @@ export default function Home() {
                 className={`${
                   active === 6
                     ? "text-white bg-primary"
-                    : "bg-purple-100 text-primary"
+                    : "bg-gray-100 text-primary"
                 } shadow-md gap-1`}
               >
                 Diamond
