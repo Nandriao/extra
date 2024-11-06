@@ -53,10 +53,10 @@ export default function Login() {
   };
 
   return (
-    <main className="flex flex-col min-h-[90vh] w-full items-center justify-center p-4">
+    <main className="flex flex-col min-h-[75vh] w-full items-center justify-center p-4">
       <Form {...form}>
         <div className="flex flex-col gap-4 items-center justify-center mb-11">
-          <h1 className="text-2xl font-bold text-purple-600">
+          <h1 className="text-2xl font-bold text-purple-500">
             Olá, bem vindo de volta!
           </h1>
 
@@ -125,7 +125,7 @@ export default function Login() {
                 <div className="flex justify-end">
                   <Link
                     href="#"
-                    className="text-base text-purple-600 px-0"
+                    className="text-base text-purple-600 px-0 py-1"
                   >
                     Esqueceu sua senha?
                   </Link>

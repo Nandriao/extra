@@ -13,7 +13,7 @@ import { AiOutlineLogin, AiOutlineUserAdd } from "react-icons/ai";
 function Header() {
   // const [loged, setLoged] = useState<boolean>(false);
 
-  const loged = true;
+  const loged = false;
 
   return (
     <main className="p-3 flex flex-row justify-between items-center">
