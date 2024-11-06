@@ -104,35 +104,6 @@ export default function Home() {
           <ScrollBar orientation="horizontal" />
         </ScrollArea>
 
-        {/* <div className="flex flex-row gap-2">
-          <Link
-            href={"/"}
-            className="flex flex-col items-center shadow-sm active:opacity-50 bg-purple-100 rounded-md p-2"
-          >
-            <Image src={Deposit} alt="Balance" className="w-[100px]" />
-
-            <p className="text-gray-500 pb-1">Depósitar</p>
-          </Link>
-
-          <Link
-            href={"/"}
-            className="flex flex-col items-center shadow-sm active:opacity-50 bg-purple-100 rounded-md p-2"
-          >
-            <Image src={Send} alt="Balance" className="w-[100px]" />
-
-            <p className="text-gray-500 pb-1">Investir</p>
-          </Link>
-
-          <Link
-            href={"/"}
-            className="flex flex-col items-center shadow-sm active:opacity-50 bg-purple-100 rounded-md p-2"
-          >
-            <Image src={Withdraw} alt="Balance" className="w-[100px]" />
-
-            <p className="text-gray-500 pb-1">Levantar</p>
-          </Link>
-        </div> */}
-
         <div className="flex flex-col gap-2">
           <div className="flex px-3  flex-row justify-between w-full items-center">
             <p className="text-gray-500">Planos e comições</p>
