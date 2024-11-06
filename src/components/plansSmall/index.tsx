@@ -15,7 +15,7 @@ export default function PlansSmall({ active, name, logo, clickFunction }: Props)
     <Button
       onClick={clickFunction}
       className={`${
-        active === 1 ? "text-white bg-primary" : "bg-gray-100 text-primary"
+        active === 1 ? "text-white bg-primary" : "bg-gray-200 text-primary"
       } shadow-md gap-1`}
     >
       {name}
