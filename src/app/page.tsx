@@ -33,6 +33,8 @@ import Diamond from "@/assets/medalhas/diamond.png";
 
 import { ChevronRight } from "lucide-react";
 import ItemsCard from "@/components/itemsCard";
+import PlansSmall from "@/components/plansSmall";
+import OperationCard from "@/components/OperationCard";
 
 export default function Home() {
   const [show, setShow] = useState<boolean>(true);
@@ -74,32 +76,26 @@ export default function Home() {
 
         <ScrollArea className="w-full">
           <div className="flex px-3 w-max gap-2">
-            <Link
-              href={"/"}
-              className="flex flex-col items-center shadow-md active:opacity-50 bg-gray-100 rounded-md p-2"
-            >
-              <Image src={Deposit} alt="Balance" className="w-[100px]" />
-
-              <p className="text-gray-500 pb-1">Depósitar</p>
-            </Link>
-
-            <Link
-              href={"/"}
-              className="flex flex-col items-center shadow-md active:opacity-50 bg-gray-100 rounded-md p-2"
-            >
-              <Image src={Send} alt="Balance" className="w-[100px]" />
-
-              <p className="text-gray-500 pb-1">Investir</p>
-            </Link>
-
-            <Link
-              href={"/"}
-              className="flex flex-col items-center shadow-md active:opacity-50 bg-gray-100 rounded-md p-2"
-            >
-              <Image src={Withdraw} alt="Balance" className="w-[100px]" />
-
-              <p className="text-gray-500 pb-1">Levantar</p>
-            </Link>
+            <OperationCard
+              href="/"
+              imageSrc={Deposit}
+              imageAlt="Deposit"
+              title="Depósitar"
+            />
+            
+            <OperationCard
+              href="/"
+              imageSrc={Send}
+              imageAlt="Send"
+              title="Investir"
+            />
+            
+            <OperationCard
+              href="/"
+              imageSrc={Withdraw}
+              imageAlt="Withdraw"
+              title="Levantar"
+            />
           </div>
           <ScrollBar orientation="horizontal" />
         </ScrollArea>
@@ -109,107 +105,52 @@ export default function Home() {
             <p className="text-gray-500">Planos e comições</p>
             <ChevronRight color={Colors.GRAY[500]} size={25} />
           </div>
-
-          <ScrollArea className="w-full ">
+          
+          <ScrollArea className="w-full">
             <div className="flex px-3 pb-2 w-max gap-2">
-              {/* <Button
-                onClick={() => {
-                  setActive(0);
-                }}
-                className={`${
-                  active === 0
-                    ? "text-white bg-primary"
-                    : "bg-purple-100 text-primary"
-                } shadow-sm`}
-              >
-                Todos 1/6
-              </Button> */}
+              <PlansSmall
+                active={active === 1 ? 1 : 0}
+                name="Bronze"
+                logo={Bronze}
+                clickFunction={() => setActive(1)}
+              />
 
-              <Button
-                onClick={() => {
-                  setActive(1);
-                }}
-                className={`${
-                  active === 1
-                    ? "text-white bg-primary"
-                    : "bg-gray-100 text-primary"
-                } shadow-md gap-1`}
-              >
-                Bronze
-                <Image src={Bronze} alt="Bronze" className="w-[20px]" />
-              </Button>
+              <PlansSmall
+                active={active === 2 ? 1 : 0}
+                name="Silver" 
+                logo={Silver}
+                clickFunction={() => setActive(2)}
+              />
 
-              <Button
-                onClick={() => {
-                  setActive(2);
-                }}
-                className={`${
-                  active === 2
-                    ? "text-white bg-primary"
-                    : "bg-gray-100 text-primary"
-                } shadow-md gap-1`}
-              >
-                Silver
-                <Image src={Silver} alt="Silver" className="w-[20px]" />
-              </Button>
+              <PlansSmall
+                active={active === 3 ? 1 : 0}
+                name="Gold"
+                logo={Gold}
+                clickFunction={() => setActive(3)}
+              />
 
-              <Button
-                onClick={() => {
-                  setActive(3);
-                }}
-                className={`${
-                  active === 3
-                    ? "text-white bg-primary"
-                    : "bg-gray-100 text-primary"
-                } shadow-md gap-1`}
-              >
-                Gold
-                <Image src={Gold} alt="Gold" className="w-[20px]" />
-              </Button>
+              <PlansSmall
+                active={active === 4 ? 1 : 0}
+                name="Platinum"
+                logo={Platinum}
+                clickFunction={() => setActive(4)}
+              />
 
-              <Button
-                onClick={() => {
-                  setActive(4);
-                }}
-                className={`${
-                  active === 4
-                    ? "text-white bg-primary"
-                    : "bg-gray-100 text-primary"
-                } shadow-md gap-1`}
-              >
-                Platinum
-                <Image src={Platinum} alt="Platinum" className="w-[20px]" />
-              </Button>
+              <PlansSmall
+                active={active === 5 ? 1 : 0}
+                name="Emerald"
+                logo={Emerald}
+                clickFunction={() => setActive(5)}
+              />
 
-              <Button
-                onClick={() => {
-                  setActive(5);
-                }}
-                className={`${
-                  active === 5
-                    ? "text-white bg-primary"
-                    : "bg-gray-100 text-primary"
-                } shadow-md gap-1`}
-              >
-                Emerald
-                <Image src={Emerald} alt="Emerald" className="w-[20px]" />
-              </Button>
-
-              <Button
-                onClick={() => {
-                  setActive(6);
-                }}
-                className={`${
-                  active === 6
-                    ? "text-white bg-primary"
-                    : "bg-gray-100 text-primary"
-                } shadow-md gap-1`}
-              >
-                Diamond
-                <Image src={Diamond} alt="Diamond" className="w-[20px]" />
-              </Button>
+              <PlansSmall
+                active={active === 6 ? 1 : 0}
+                name="Diamond"
+                logo={Diamond}
+                clickFunction={() => setActive(6)}
+              />
             </div>
-            <ScrollBar orientation="horizontal" className="hidden" />
+            <ScrollBar orientation="horizontal" />
           </ScrollArea>
         </div>
 
