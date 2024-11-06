@@ -39,7 +39,7 @@ function Header() {
           <div className="flex flex-row gap-2">
             <Link
               href={"/"}
-              className="flex items-center rounded-md bg-purple-100 shadow-sm active:opacity-50"
+              className="flex items-center rounded-md bg-gray-100 shadow-sm active:opacity-50"
             >
               <AiOutlineLogin
                 color={Colors.PRYMARY}
