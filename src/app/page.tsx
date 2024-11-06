@@ -45,7 +45,7 @@ export default function Home() {
           <Image src={Coins} alt="Balance" className="w-[150px] -ml-2  mt-3" />
           <div className="flex flex-col w-full">
             <div className="flex flex-row items-center justify-between w-full transition-all">
-              <p className="text=xl text-purple-500 font-[poppins]">Saldo</p>
+              <p className="text-xl text-purple-500 font-[poppins]">Saldo</p>
 
               <Button
                 className="bg-transparent border-none shadow-none"

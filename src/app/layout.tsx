@@ -10,16 +10,16 @@ export const metadata: Metadata = {
 
 export default function RootLayout({
   children,
-}: Readonly<{
+}: {
   children: React.ReactNode;
-}>) {
+}) {
   return (
-    <html lang="pt-br">
-      <body className={`antialiased`}>
-        <Header />
+    <html lang="pt-BR">
+      <body>
+        <Header/>
         {children}
-        <Footer />
-      </body>
+        <Footer/>
+        </body>
     </html>
   );
 }
