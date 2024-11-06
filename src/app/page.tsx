@@ -45,7 +45,7 @@ export default function Home() {
           <Image src={Coins} alt="Balance" className="w-[150px] -ml-2  mt-3" />
           <div className="flex flex-col w-full">
             <div className="flex flex-row items-center justify-between w-full transition-all">
-              <p className="text-xl text-purple-500 font-[poppins]">Saldo</p>
+              <p className="text-xl text-gray-500 font-[poppins]">Saldo</p>
 
               <Button
                 className="bg-transparent border-none shadow-none"
@@ -55,13 +55,13 @@ export default function Home() {
                 }}
               >
                 {show ? (
-                  <AiOutlineEye color={Colors.PRYMARY} size={25} />
+                  <AiOutlineEye color={Colors.GRAY[500]} size={25} />
                 ) : (
-                  <AiOutlineEyeInvisible color={Colors.PRYMARY} size={25} />
+                  <AiOutlineEyeInvisible color={Colors.GRAY[500]} size={25} />
                 )}
               </Button>
             </div>
-            <p className="text-2xl  transition-all flex flex-row text-purple-500 font-semibold font-[poppins]">
+            <p className="text-2xl transition-all flex flex-row text-gray-600 font-semibold font-[poppins]">
               {show ? "0,00" : "****"} MZN
             </p>
           </div>
@@ -76,7 +76,7 @@ export default function Home() {
           <div className="flex px-3 w-max gap-2">
             <Link
               href={"/"}
-              className="flex flex-col items-center shadow-sm active:opacity-50 bg-purple-100 rounded-md p-2"
+              className="flex flex-col items-center shadow-md active:opacity-50 bg-gray-100 rounded-md p-2"
             >
               <Image src={Deposit} alt="Balance" className="w-[100px]" />
 
@@ -85,7 +85,7 @@ export default function Home() {
 
             <Link
               href={"/"}
-              className="flex flex-col items-center shadow-sm active:opacity-50 bg-purple-100 rounded-md p-2"
+              className="flex flex-col items-center shadow-md active:opacity-50 bg-gray-100 rounded-md p-2"
             >
               <Image src={Send} alt="Balance" className="w-[100px]" />
 
@@ -94,7 +94,7 @@ export default function Home() {
 
             <Link
               href={"/"}
-              className="flex flex-col items-center shadow-sm active:opacity-50 bg-purple-100 rounded-md p-2"
+              className="flex flex-col items-center shadow-md active:opacity-50 bg-gray-100 rounded-md p-2"
             >
               <Image src={Withdraw} alt="Balance" className="w-[100px]" />
 
@@ -111,7 +111,7 @@ export default function Home() {
           </div>
 
           <ScrollArea className="w-full ">
-            <div className="flex px-3 w-max gap-2">
+            <div className="flex px-3 pb-2 w-max gap-2">
               {/* <Button
                 onClick={() => {
                   setActive(0);
@@ -133,7 +133,7 @@ export default function Home() {
                   active === 1
                     ? "text-white bg-[#8c52ff]"
                     : "bg-purple-100 text-[#8c52ff]"
-                } shadow-sm gap-1`}
+                } shadow-md gap-1`}
               >
                 Bronze
                 <Image src={Bronze} alt="Bronze" className="w-[20px]" />
@@ -147,7 +147,7 @@ export default function Home() {
                   active === 2
                     ? "text-white bg-[#8c52ff]"
                     : "bg-purple-100 text-[#8c52ff]"
-                } shadow-sm gap-1`}
+                } shadow-md gap-1`}
               >
                 Silver
                 <Image src={Silver} alt="Silver" className="w-[20px]" />
@@ -161,7 +161,7 @@ export default function Home() {
                   active === 3
                     ? "text-white bg-[#8c52ff]"
                     : "bg-purple-100 text-[#8c52ff]"
-                } shadow-sm gap-1`}
+                } shadow-md gap-1`}
               >
                 Gold
                 <Image src={Gold} alt="Gold" className="w-[20px]" />
@@ -175,7 +175,7 @@ export default function Home() {
                   active === 4
                     ? "text-white bg-[#8c52ff]"
                     : "bg-purple-100 text-[#8c52ff]"
-                } shadow-sm gap-1`}
+                } shadow-md gap-1`}
               >
                 Platinum
                 <Image src={Platinum} alt="Platinum" className="w-[20px]" />
@@ -189,7 +189,7 @@ export default function Home() {
                   active === 5
                     ? "text-white bg-[#8c52ff]"
                     : "bg-purple-100 text-[#8c52ff]"
-                } shadow-sm gap-1`}
+                } shadow-md gap-1`}
               >
                 Emerald
                 <Image src={Emerald} alt="Emerald" className="w-[20px]" />
@@ -203,7 +203,7 @@ export default function Home() {
                   active === 6
                     ? "text-white bg-[#8c52ff]"
                     : "bg-purple-100 text-[#8c52ff]"
-                } shadow-sm gap-1`}
+                } shadow-md gap-1`}
               >
                 Diamond
                 <Image src={Diamond} alt="Diamond" className="w-[20px]" />

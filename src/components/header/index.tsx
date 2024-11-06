@@ -23,13 +23,13 @@ function Header() {
         <div className="flex flex-row gap-2">
           <Link
             href={"/"}
-            className="flex items-center rounded-md bg-purple-100 shadow-sm active:opacity-50"
+            className="flex items-center rounded-md bg-purple-100 shadow-md active:opacity-50"
           >
             <FaBell color={Colors.PRYMARY} size={35} className="p-2 " />
           </Link>
           <Link
             href={"/"}
-            className="flex rounded-md bg-purple-100 shadow-sm items-center"
+            className="flex rounded-md bg-purple-100 shadow-md items-center"
           >
             <FaUser color={Colors.PRYMARY} size={35} className="p-2 " />
           </Link>
@@ -38,8 +38,8 @@ function Header() {
         <div className="flex flex-row gap-2">
           <div className="flex flex-row gap-2">
             <Link
-              href={"/"}
-              className="flex items-center rounded-md bg-gray-100 shadow-sm active:opacity-50"
+              href={"/authentication/login"}
+              className="flex items-center rounded-md bg-gray-100 shadow-md active:opacity-50"
             >
               <AiOutlineLogin
                 color={Colors.PRYMARY}
@@ -51,8 +51,8 @@ function Header() {
             </Link>
 
             <Link
-              href={"/"}
-              className={`flex items-center rounded-md bg-primary shadow-sm active:opacity-50`}
+              href={"/authentication/register"}
+              className={`flex items-center rounded-md bg-primary shadow-md active:opacity-50`}
             >
               <AiOutlineUserAdd
                 color={Colors.WHITE}
