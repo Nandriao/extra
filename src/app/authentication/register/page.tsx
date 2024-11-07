@@ -1,7 +1,7 @@
 "use client";
 
 import React from "react";
-import { Eye, EyeOff } from "lucide-react";
+import { Eye, EyeOff, Phone, User, Mail, Lock, Calendar } from "lucide-react";
 import * as z from "zod";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
@@ -96,6 +96,7 @@ export default function Register() {
                     {...field}
                     placeholder="Nome completo"
                     className="placeholder:text-gray-500 shadow-sm text-base bg-gray-100 h-12 border-none"
+                    startAdornment={<User size={22} className="text-gray-500" />}
                   />
                 </FormControl>
                 <FormMessage />
@@ -115,6 +116,7 @@ export default function Register() {
                     placeholder="Número de telefone"
                     inputMode="numeric"
                     className="placeholder:text-gray-500 shadow-sm text-base bg-gray-100 h-12 border-none"
+                    startAdornment={<Phone size={22} className="text-gray-500" />}
                   />
                 </FormControl>
                 <FormMessage />
@@ -134,6 +136,7 @@ export default function Register() {
                       type={showPassword ? "text" : "password"}
                       placeholder="Senha"
                       className="placeholder:text-gray-500 shadow-sm text-base bg-gray-100 h-12 border-none"
+                      startAdornment={<Lock size={22} className="text-gray-500" />}
                     />
                     <Button
                       type="button"
@@ -168,6 +171,7 @@ export default function Register() {
                       type={showConfirmPassword ? "text" : "password"}
                       placeholder="Confirmar senha"
                       className="placeholder:text-gray-500 shadow-sm text-base bg-gray-100 h-12 border-none"
+                      startAdornment={<Lock size={22} className="text-gray-500" />}
                     />
                     <Button
                       type="button"

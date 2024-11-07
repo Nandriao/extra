@@ -1,7 +1,7 @@
 "use client";
 
 import React from "react";
-import { Eye, EyeOff } from "lucide-react";
+import { Eye, EyeOff, Lock, Phone } from "lucide-react";
 import * as z from "zod";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
@@ -73,7 +73,6 @@ export default function Login() {
             name="phone"
             render={({ field }) => (
               <FormItem>
-                {/* <FormLabel className="text-base">Número</FormLabel> */}
                 <FormControl>
                   <Input
                     {...field}
@@ -81,6 +80,7 @@ export default function Login() {
                     placeholder="Digite seu número"
                     inputMode="numeric"
                     className="placeholder:text-gray-500 shadow-sm text-base bg-gray-100 h-12 border-none"
+                    startAdornment={<Phone size={22} className="text-gray-500" />}
                   />
                 </FormControl>
                 <FormMessage />
@@ -93,7 +93,6 @@ export default function Login() {
             name="password"
             render={({ field }) => (
               <FormItem>
-                {/* <FormLabel className="text-base">Senha</FormLabel> */}
                 <FormControl>
                   <div className="relative">
                     <Input
@@ -101,6 +100,7 @@ export default function Login() {
                       type={showPassword ? "text" : "password"}
                       placeholder="Digite sua senha"
                       className="placeholder:text-gray-500 shadow-sm text-base bg-gray-100 h-12 border-none"
+                      startAdornment={<Lock size={22} className="text-gray-500" />}
                     />
                     <Button
                       type="button"
@@ -108,9 +108,7 @@ export default function Login() {
                       size="icon"
                       className="absolute right-2 top-1/2 -translate-y-1/2 h-8 w-8 px-0"
                       onClick={handleTogglePassword}
-                      aria-label={
-                        showPassword ? "Ocultar senha" : "Mostrar senha"
-                      }
+                      aria-label={showPassword ? "Ocultar senha" : "Mostrar senha"}
                     >
                       {showPassword ? (
                         <EyeOff size={22} color={Colors.GRAY[500]} />
@@ -120,7 +118,6 @@ export default function Login() {
                     </Button>
                   </div>
                 </FormControl>
-
                 <FormMessage />
                 <div className="flex justify-end">
                   <Link
