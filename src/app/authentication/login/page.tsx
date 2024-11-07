@@ -1,7 +1,7 @@
 "use client";
 
 import React from "react";
-import { Eye, EyeOff, Phone, Lock } from "lucide-react";
+import { Eye, EyeOff, Phone, Lock, Loader2 } from "lucide-react";
 import * as z from "zod";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
@@ -36,6 +36,7 @@ const getIconColor = (field: any, formState: any, name: string) => {
 
 export default function Login() {
   const [showPassword, setShowPassword] = React.useState(false);
+  const [isLoading, setIsLoading] = React.useState(false);
 
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
@@ -45,8 +46,16 @@ export default function Login() {
     },
   });
 
-  const handleSubmit = (values: z.infer<typeof formSchema>) => {
-    console.log("Form submitted:", values);
+  const handleSubmit = async (values: z.infer<typeof formSchema>) => {
+    setIsLoading(true);
+    try {
+      await new Promise((resolve) => setTimeout(resolve, 10000));
+      console.log("Form submitted:", values);
+    } catch (error) {
+      console.log("Form notsubmitted", error);
+    } finally {
+      setIsLoading(false);
+    }
   };
 
   const handleTogglePassword = () => {
@@ -57,7 +66,9 @@ export default function Login() {
     <main className="flex flex-col min-h-[90vh] items-center justify-center w-full p-2">
       <Form {...form}>
         <div className="flex flex-col gap-4 items-center justify-center mb-11">
-          <h1 className="text-2xl font-bold text-primary">Bem vindo(a) de volta</h1>
+          <h1 className="text-2xl font-bold text-primary">
+            Bem vindo(a) de volta
+          </h1>
           <p className="text-base text-gray-500 text-center">
             Entre com suas credenciais para acessar sua conta
           </p>
@@ -80,8 +91,8 @@ export default function Login() {
                     inputMode="numeric"
                     className="placeholder:text-gray-500 shadow-sm text-base text-gray-700 bg-gray-100 h-12 border-none"
                     startAdornment={
-                      <Phone 
-                        size={22} 
+                      <Phone
+                        size={22}
                         className={getIconColor(field, form.formState, "phone")}
                       />
                     }
@@ -105,9 +116,13 @@ export default function Login() {
                       placeholder="Senha"
                       className="placeholder:text-gray-500 shadow-sm text-base text-gray-700 bg-gray-100 h-12 border-none"
                       startAdornment={
-                        <Lock 
-                          size={22} 
-                          className={getIconColor(field, form.formState, "password")}
+                        <Lock
+                          size={22}
+                          className={getIconColor(
+                            field,
+                            form.formState,
+                            "password"
+                          )}
                         />
                       }
                     />
@@ -117,18 +132,14 @@ export default function Login() {
                       size="icon"
                       className="absolute right-2 top-1/2 -translate-y-1/2 h-8 w-8 px-0"
                       onClick={handleTogglePassword}
-                      aria-label={showPassword ? "Ocultar senha" : "Mostrar senha"}
+                      aria-label={
+                        showPassword ? "Ocultar senha" : "Mostrar senha"
+                      }
                     >
                       {showPassword ? (
-                        <EyeOff 
-                          size={22} 
-                          className="text-gray-500"
-                        />
+                        <EyeOff size={22} className="text-gray-500" />
                       ) : (
-                        <Eye 
-                          size={22} 
-                          className="text-gray-500"
-                        />
+                        <Eye size={22} className="text-gray-500" />
                       )}
                     </Button>
                   </div>
@@ -147,8 +158,19 @@ export default function Login() {
             </Link>
           </div>
 
-          <Button type="submit" className="w-full text-base h-12">
-            Entrar
+          <Button
+            type="submit"
+            className="w-full text-base h-12"
+            disabled={isLoading}
+          >
+            {isLoading ? (
+              <>
+                <Loader2 className="mr-2 h-6 w-6 animate-spin" />
+                Entrando...
+              </>
+            ) : (
+              "Entrar"
+            )}
           </Button>
 
           <div className="flex items-center gap-1 justify-center pt-2">

@@ -1,7 +1,7 @@
 "use client";
 
 import React from "react";
-import { Eye, EyeOff, Phone, User, Mail, Lock, Calendar } from "lucide-react";
+import { Eye, EyeOff, Phone, User, Mail, Lock, Calendar, Loader2 } from "lucide-react";
 import * as z from "zod";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
@@ -51,6 +51,7 @@ const getIconColor = (field: any, formState: any, name: string) => {
 export default function Register() {
   const [showPassword, setShowPassword] = React.useState(false);
   const [showConfirmPassword, setShowConfirmPassword] = React.useState(false);
+  const [isLoading, setIsLoading] = React.useState(false);
 
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
@@ -63,8 +64,17 @@ export default function Register() {
     },
   });
 
-  const handleSubmit = (values: z.infer<typeof formSchema>) => {
-    console.log("Form submitted:", values);
+  const handleSubmit = async (values: z.infer<typeof formSchema>) => {
+    setIsLoading(true);
+    try {
+      // Simulate API call with 5 second delay
+      await new Promise((resolve) => setTimeout(resolve, 5000));
+      console.log("Form submitted:", values);
+    } catch (error) {
+      console.log("Error submitting form:", error);
+    } finally {
+      setIsLoading(false);
+    }
   };
 
   const handleTogglePassword = () => {
@@ -261,8 +271,19 @@ export default function Register() {
             )}
           />
 
-          <Button type="submit" className="w-full text-base h-12">
-            Criar conta
+          <Button 
+            type="submit" 
+            className="w-full text-base h-12"
+            disabled={isLoading}
+          >
+            {isLoading ? (
+              <>
+                <Loader2 className="mr-2 h-6 w-6 animate-spin" />
+                Criando conta...
+              </>
+            ) : (
+              "Criar conta"
+            )}
           </Button>
 
           <div className="flex items-center gap-1 justify-center pt-2">
