@@ -15,7 +15,6 @@ import {
   FormMessage,
 } from "@/components/ui/form";
 import { Checkbox } from "@/components/ui/checkbox";
-import Colors from "@/constants/Colors";
 import Link from "next/link";
 
 const formSchema = z
