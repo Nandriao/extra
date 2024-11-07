@@ -14,6 +14,7 @@ import Gold from "@/assets/medalhas/gold.png";
 import Platinum from "@/assets/medalhas/platinum.png";
 import Emerald from "@/assets/medalhas/emerald.png";
 import Diamond from "@/assets/medalhas/diamond.png";
+import { ChevronRight, LogOut } from "lucide-react";
 
 const ProfilePage = () => {
   const userProfile = {
@@ -93,7 +94,65 @@ const ProfilePage = () => {
           </Link>
         </div>
 
-        <div></div>
+        <div className="flex flex-col gap-3 mt-6">
+            <h1 className="text-gray-700 text-base">Operações e configurações</h1>
+
+            <Link 
+              href="/dashboard/details" 
+              className="flex flex-row items-center justify-between p-3 bg-gray-50 rounded-lg hover:bg-gray-100 cursor-pointer"
+            >
+              <div className="flex flex-row items-center gap-2">
+                <p className="text-gray-700 text-base">Detalhes do perfil</p>
+              </div>
+              <ChevronRight className="h-6 w-6 text-gray-500" />
+            </Link>
+
+            <Link 
+              href="/dashboard/transactions" 
+              className="flex flex-row items-center justify-between p-3 bg-gray-50 rounded-lg hover:bg-gray-100 cursor-pointer"
+            >
+              <div className="flex flex-row items-center gap-2">
+                <p className="text-gray-700 text-base">Histórico de transações</p>
+              </div>
+              <ChevronRight className="h-6 w-6 text-gray-500" />
+            </Link>
+
+            <Link 
+              href="/dashboard/settings" 
+              className="flex flex-row items-center justify-between p-3 bg-gray-50 rounded-lg hover:bg-gray-100 cursor-pointer"
+            >
+              <div className="flex flex-row items-center gap-2">
+                <p className="text-gray-700 text-base">Configurações</p>
+              </div>
+              <ChevronRight className="h-6 w-6 text-gray-500" />
+            </Link>
+
+            <Link 
+              href="/dashboard/help" 
+              className="flex flex-row items-center justify-between p-3 bg-gray-50 rounded-lg hover:bg-gray-100 cursor-pointer"
+            >
+              <div className="flex flex-row items-center gap-2">
+                <p className="text-gray-700 text-base">Ajuda</p>
+              </div>
+              <ChevronRight className="h-6 w-6 text-gray-500" />
+            </Link>
+        </div>
+
+        <div className="mt-6 w-full">
+          <Button
+            type="button"
+            variant="destructive"
+            aria-label="Encerrar sessão"
+            className="w-full h-12 text-base flex items-center justify-center gap-2"
+            onClick={() => {
+              // TODO: Implement logout logic
+              console.log('Logout clicked');
+            }}
+          >
+            <LogOut className="h-5 w-5" />
+            Encerrar sessão
+          </Button>
+        </div>
       </div>
     </div>
   );

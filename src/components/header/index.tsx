@@ -3,6 +3,7 @@
 import Image from "next/image";
 import React from "react";
 import Link from "next/link";
+import { usePathname } from "next/navigation";
 
 import Logo from "@/img/extra-purple-full.png";
 import Colors from "@/constants/Colors";
@@ -13,6 +14,7 @@ import { AiOutlineLogin, AiOutlineUserAdd } from "react-icons/ai";
 function Header() {
   const loged = true;
   const notificationCount = 3;
+  const pathname = usePathname();
 
   return (
     <main className="p-3 flex flex-row justify-between items-center">
@@ -35,7 +37,7 @@ function Header() {
             )}
           </Link>
           
-          {window.location.pathname !== '/dashboard/profile' && (
+          {pathname !== '/dashboard/profile' && (
             <Link
               href="/dashboard/profile"
               className="flex rounded-md bg-purple-100 shadow-md items-center active:opacity-50
