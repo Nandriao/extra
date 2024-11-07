@@ -54,7 +54,7 @@ export default function Login() {
   };
 
   return (
-    <main className="flex flex-col min-h-[90vh] items-center justify-center w-full p-4">
+    <main className="flex flex-col min-h-[90vh] items-center justify-center w-full p-2">
       <Form {...form}>
         <div className="flex flex-col gap-4 items-center justify-center mb-11">
           <h1 className="text-2xl font-bold text-primary">Bem vindo(a) de volta</h1>
