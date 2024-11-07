@@ -3,8 +3,11 @@
 import { Button } from "@/components/ui/button";
 import { ArrowLeft, ChevronRight, Phone, Mail, MessageSquare } from "lucide-react";
 import Link from "next/link";
+import { useRouter } from "next/navigation";
 
 const HelpPage = () => {
+  const router = useRouter();
+
   const faqItems = [
     {
       question: "Como faço um depósito?",
@@ -21,19 +24,17 @@ const HelpPage = () => {
   ];
 
   return (
-    <div className="min-h-screen py-6 px-3">
-      <div className="max-w-2xl mx-auto">
+    <div className="py-6 px-2">
+      <div className="max-w-2xl">
         <div className="flex items-center gap-4 mb-6">
-          <Link href="/dashboard/profile">
-            <Button variant="ghost" size="icon" aria-label="Voltar">
-              <ArrowLeft className="h-6 w-6" />
-            </Button>
-          </Link>
+          <Button onClick={() => router.back()} variant="ghost" size="icon" aria-label="Voltar">
+            <ArrowLeft className="h-6 w-6" />
+          </Button>
           <h1 className="text-xl font-semibold text-gray-900">Ajuda</h1>
         </div>
 
         <div className="space-y-6">
-          <div className="bg-white rounded-lg p-6 shadow-sm space-y-4">
+          <div className="rounded-lg px-3  space-y-4">
             <h2 className="text-lg font-medium text-gray-900">Contato</h2>
             
             <div className="grid grid-cols-1 gap-4">
@@ -60,26 +61,26 @@ const HelpPage = () => {
               </Link>
 
               <Link 
-                href="/dashboard/help/chat"
+                href="https://wa.me/+258843794444"
                 className="flex items-center justify-between p-4 bg-gray-50 rounded-lg hover:bg-gray-100"
               >
                 <div className="flex items-center gap-3">
                   <MessageSquare className="h-5 w-5 text-gray-500" />
-                  <p className="text-base text-gray-900">Chat online</p>
+                  <p className="text-base text-gray-900">WhatsApp</p>
                 </div>
                 <ChevronRight className="h-5 w-5 text-gray-500" />
               </Link>
             </div>
           </div>
 
-          <div className="bg-white rounded-lg p-6 shadow-sm space-y-4">
+          <div className=" px-3 space-y-4">
             <h2 className="text-lg font-medium text-gray-900">Perguntas frequentes</h2>
             
             <div className="space-y-4">
               {faqItems.map((item, index) => (
                 <div 
                   key={index}
-                  className="p-4 bg-gray-50 rounded-lg"
+                  className="p-3 bg-gray-50 rounded-lg"
                 >
                   <p className="text-base font-medium text-gray-900 mb-2">
                     {item.question}

@@ -2,7 +2,7 @@
 
 import { Button } from "@/components/ui/button";
 import { ArrowLeft } from "lucide-react";
-import Link from "next/link";
+import { useRouter } from "next/navigation";
 
 const ProfileDetailsPage = () => {
   const userProfile = {
@@ -11,21 +11,22 @@ const ProfileDetailsPage = () => {
     email: "albino@example.com",
     address: "Maputo, Moçambique",
     documentId: "123456789",
+    plan: "Gold",
   };
 
+  const router = useRouter();
+
   return (
-    <div className="min-h-screen py-6 px-3">
-      <div className="max-w-2xl mx-auto">
-        <div className="flex items-center gap-4 mb-6">
-          <Link href="/dashboard/profile">
-            <Button variant="ghost" size="icon" aria-label="Voltar">
+    <div className="py-6">
+      <div className="max-w-2xl">
+        <div className="flex items-center px-3 gap-4 mb-6">
+            <Button onClick={() => router.back()} variant="ghost" size="icon" aria-label="Voltar">
               <ArrowLeft className="h-6 w-6" />
             </Button>
-          </Link>
           <h1 className="text-xl font-semibold text-gray-900">Detalhes do Perfil</h1>
         </div>
 
-        <div className="space-y-6 bg-white rounded-lg p-6 shadow-sm">
+        <div className="space-y-6 px-5">
           <div className="space-y-2">
             <p className="text-sm text-gray-500">Nome completo</p>
             <p className="text-base text-gray-900">{userProfile.name}</p>
@@ -37,8 +38,8 @@ const ProfileDetailsPage = () => {
           </div>
 
           <div className="space-y-2">
-            <p className="text-sm text-gray-500">Email</p>
-            <p className="text-base text-gray-900">{userProfile.email}</p>
+            <p className="text-sm text-gray-500">Plano</p>
+            <p className="text-base text-gray-900">{userProfile.plan}</p>
           </div>
 
           <div className="space-y-2">

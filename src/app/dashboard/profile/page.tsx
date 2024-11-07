@@ -6,6 +6,9 @@ import Colors from "@/constants/Colors";
 import Image from "next/image";
 import Link from "next/link";
 
+import { ChevronRight, LogOut } from "lucide-react";
+import { useRouter } from "next/navigation";
+
 import { FaUser } from "react-icons/fa6";
 
 import Bronze from "@/assets/medalhas/bronze.png";
@@ -14,23 +17,19 @@ import Gold from "@/assets/medalhas/gold.png";
 import Platinum from "@/assets/medalhas/platinum.png";
 import Emerald from "@/assets/medalhas/emerald.png";
 import Diamond from "@/assets/medalhas/diamond.png";
-import { ChevronRight, LogOut } from "lucide-react";
 
 const ProfilePage = () => {
   const userProfile = {
     name: "Albino Nandriao",
     Phone: 843794444,
-    medall: "Gold"
+    medall: "Gold",
   };
 
-  const handleEditProfile = () => {
-    // Implementação futura da edição de perfil
-    console.log("Editar perfil");
-  };
+  const router = useRouter();
 
   return (
     <div className="min-h-screen py-6 px-3">
-      <div className="max-w-2xl mx-auto">
+      <div className="max-w-2xl">
         <div className="flex flex-row items-center gap-3">
           <Image
             src={Gold}
@@ -74,8 +73,8 @@ const ProfilePage = () => {
 
         <div className="flex flex-row gap-2 w-full mt-8 items-center justify-center">
           <Link href="/dashboard/deposit" className="flex flex-1">
-            <Button 
-              className="w-full h-12 text-base bg-primary text-white hover:bg-primary/90" 
+            <Button
+              className="w-full h-12 text-base bg-primary text-white hover:bg-primary/90"
               aria-label="Depositar dinheiro"
             >
               Depositar
@@ -95,47 +94,40 @@ const ProfilePage = () => {
         </div>
 
         <div className="flex flex-col gap-3 mt-6">
-            <h1 className="text-gray-700 text-base">Operações e configurações</h1>
+          <h1 className="text-gray-700 text-base">Operações e configurações</h1>
 
-            <Link 
-              href="/dashboard/details" 
-              className="flex flex-row items-center justify-between p-3 bg-gray-50 rounded-lg hover:bg-gray-100 cursor-pointer"
-            >
-              <div className="flex flex-row items-center gap-2">
-                <p className="text-gray-700 text-base">Detalhes do perfil</p>
-              </div>
-              <ChevronRight className="h-6 w-6 text-gray-500" />
-            </Link>
+          <Link
+            href="/dashboard/details"
+            className="flex flex-row items-center justify-between p-3 bg-gray-50 rounded-lg hover:bg-gray-100 cursor-pointer"
+          >
+            <p className="text-gray-700 text-base">Detalhes do perfil</p>
 
-            <Link 
-              href="/dashboard/transactions" 
-              className="flex flex-row items-center justify-between p-3 bg-gray-50 rounded-lg hover:bg-gray-100 cursor-pointer"
-            >
-              <div className="flex flex-row items-center gap-2">
-                <p className="text-gray-700 text-base">Histórico de transações</p>
-              </div>
-              <ChevronRight className="h-6 w-6 text-gray-500" />
-            </Link>
+            <ChevronRight className="h-6 w-6 text-gray-500" />
+          </Link>
 
-            <Link 
-              href="/dashboard/settings" 
-              className="flex flex-row items-center justify-between p-3 bg-gray-50 rounded-lg hover:bg-gray-100 cursor-pointer"
-            >
-              <div className="flex flex-row items-center gap-2">
-                <p className="text-gray-700 text-base">Configurações</p>
-              </div>
-              <ChevronRight className="h-6 w-6 text-gray-500" />
-            </Link>
+          <Link
+            href="/dashboard/transactions"
+            className="flex flex-row items-center justify-between p-3 bg-gray-50 rounded-lg hover:bg-gray-100 cursor-pointer"
+          >
+            <p className="text-gray-700 text-base">Histórico de transações</p>
+            <ChevronRight className="h-6 w-6 text-gray-500" />
+          </Link>
 
-            <Link 
-              href="/dashboard/help" 
-              className="flex flex-row items-center justify-between p-3 bg-gray-50 rounded-lg hover:bg-gray-100 cursor-pointer"
-            >
-              <div className="flex flex-row items-center gap-2">
-                <p className="text-gray-700 text-base">Ajuda</p>
-              </div>
-              <ChevronRight className="h-6 w-6 text-gray-500" />
-            </Link>
+          <Link
+            href="/dashboard/settings"
+            className="flex flex-row items-center justify-between p-3 bg-gray-50 rounded-lg hover:bg-gray-100 cursor-pointer"
+          >
+            <p className="text-gray-700 text-base">Configurações</p>
+            <ChevronRight className="h-6 w-6 text-gray-500" />
+          </Link>
+
+          <Link
+            href="/dashboard/help"
+            className="flex flex-row items-center justify-between p-3 bg-gray-50 rounded-lg hover:bg-gray-100 cursor-pointer"
+          >
+            <p className="text-gray-700 text-base">Ajuda</p>
+            <ChevronRight className="h-6 w-6 text-gray-500" />
+          </Link>
         </div>
 
         <div className="mt-6 w-full">
@@ -145,8 +137,7 @@ const ProfilePage = () => {
             aria-label="Encerrar sessão"
             className="w-full h-12 text-base flex items-center justify-center gap-2"
             onClick={() => {
-              // TODO: Implement logout logic
-              console.log('Logout clicked');
+              router.push("/authentication/login")
             }}
           >
             <LogOut className="h-5 w-5" />
