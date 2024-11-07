@@ -43,6 +43,12 @@ const formSchema = z
     path: ["confirmPassword"],
   });
 
+const getIconColor = (field: any, formState: any, name: string) => {
+  if (formState.errors[name]) return "text-destructive";
+  if (field.value) return "text-primary";
+  return "text-gray-500";
+};
+
 export default function Register() {
   const [showPassword, setShowPassword] = React.useState(false);
   const [showConfirmPassword, setShowConfirmPassword] = React.useState(false);
@@ -95,8 +101,13 @@ export default function Register() {
                   <Input
                     {...field}
                     placeholder="Nome completo"
-                    className="placeholder:text-gray-500 shadow-sm text-base bg-gray-100 h-12 border-none"
-                    startAdornment={<User size={22} className="text-gray-500" />}
+                    className="placeholder:text-gray-500 shadow-sm text-base text-gray-700 bg-gray-100 h-12 border-none"
+                    startAdornment={
+                      <User 
+                        size={22} 
+                        className={getIconColor(field, form.formState, "fullName")}
+                      />
+                    }
                   />
                 </FormControl>
                 <FormMessage />
@@ -115,8 +126,13 @@ export default function Register() {
                     type="tel"
                     placeholder="Número de telefone"
                     inputMode="numeric"
-                    className="placeholder:text-gray-500 shadow-sm text-base bg-gray-100 h-12 border-none"
-                    startAdornment={<Phone size={22} className="text-gray-500" />}
+                    className="placeholder:text-gray-500 shadow-sm text-base text-gray-700 bg-gray-100 h-12 border-none"
+                    startAdornment={
+                      <Phone 
+                        size={22} 
+                        className={getIconColor(field, form.formState, "phone")}
+                      />
+                    }
                   />
                 </FormControl>
                 <FormMessage />
@@ -135,8 +151,13 @@ export default function Register() {
                       {...field}
                       type={showPassword ? "text" : "password"}
                       placeholder="Senha"
-                      className="placeholder:text-gray-500 shadow-sm text-base bg-gray-100 h-12 border-none"
-                      startAdornment={<Lock size={22} className="text-gray-500" />}
+                      className="placeholder:text-gray-500 shadow-sm text-base text-gray-700 bg-gray-100 h-12 border-none"
+                      startAdornment={
+                        <Lock 
+                          size={22} 
+                          className={getIconColor(field, form.formState, "password")}
+                        />
+                      }
                     />
                     <Button
                       type="button"
@@ -147,9 +168,15 @@ export default function Register() {
                       aria-label={showPassword ? "Ocultar senha" : "Mostrar senha"}
                     >
                       {showPassword ? (
-                        <EyeOff size={22} color={Colors.GRAY[500]} />
+                        <EyeOff 
+                          size={22} 
+                          className="text-gray-500"
+                        />
                       ) : (
-                        <Eye size={22} color={Colors.GRAY[500]} />
+                        <Eye 
+                          size={22} 
+                          className="text-gray-500"
+                        />
                       )}
                     </Button>
                   </div>
@@ -170,8 +197,13 @@ export default function Register() {
                       {...field}
                       type={showConfirmPassword ? "text" : "password"}
                       placeholder="Confirmar senha"
-                      className="placeholder:text-gray-500 shadow-sm text-base bg-gray-100 h-12 border-none"
-                      startAdornment={<Lock size={22} className="text-gray-500" />}
+                      className="placeholder:text-gray-500 shadow-sm text-base text-gray-700 bg-gray-100 h-12 border-none"
+                      startAdornment={
+                        <Lock 
+                          size={22} 
+                          className={getIconColor(field, form.formState, "confirmPassword")}
+                        />
+                      }
                     />
                     <Button
                       type="button"
@@ -179,14 +211,18 @@ export default function Register() {
                       size="icon"
                       className="absolute right-2 top-1/2 -translate-y-1/2 h-8 w-8 px-0"
                       onClick={handleToggleConfirmPassword}
-                      aria-label={
-                        showConfirmPassword ? "Ocultar senha" : "Mostrar senha"
-                      }
+                      aria-label={showConfirmPassword ? "Ocultar senha" : "Mostrar senha"}
                     >
                       {showConfirmPassword ? (
-                        <EyeOff size={22} color={Colors.GRAY[500]} />
-                      ) : (
-                        <Eye size={22} color={Colors.GRAY[500]} />
+                        <EyeOff 
+                        size={22} 
+                        className="text-gray-500"
+                      />
+                    ) : (
+                      <Eye 
+                        size={22} 
+                        className="text-gray-500"
+                      />
                       )}
                     </Button>
                   </div>
