@@ -35,21 +35,8 @@ import Loading from "./loading";
 
 export default function Home() {
   const [show, setShow] = useState<boolean>(true);
+
   const [active, setActive] = useState<number>(1);
-  const [currentMedalIndex, setCurrentMedalIndex] = useState<number>(0);
-
-  // Create array of medals
-  const medals = [Bronze, Silver, Gold, Platinum, Emerald, Diamond];
-
-  // Add useEffect for automatic cycling
-  React.useEffect(() => {
-    const interval = setInterval(() => {
-      setCurrentMedalIndex((prev) => (prev + 1) % medals.length);
-    }, 5000); // Change image every 10 seconds
-
-    return () => clearInterval(interval);
-  }, []);
-
   return (
     <main className="flex flex-col mt-3 mb-3">
       <div className="flex flex-col gap-3">
@@ -88,16 +75,16 @@ export default function Home() {
           <div className="flex px-3 w-max gap-2">
             <OperationCard
               href="/dashboard/deposit"
-              imageSrc={medals[currentMedalIndex]}
-              imageAlt="Medal"
-              title="Depósitar"
+              imageSrc={Bronze}
+              imageAlt="Deposit"
+              title=""
             />
             
             <OperationCard
               href="/dashboard/plans"
               imageSrc={Send}
               imageAlt="plans"
-              title="Investir"
+              title="Atualizar"
             />
             
             <OperationCard
@@ -111,7 +98,7 @@ export default function Home() {
         </ScrollArea>
 
         <div className="flex flex-col gap-2">
-          <div className="flex px-3 mt-1 flex-row justify-between w-full items-center">
+          <div className="flex px-3  flex-row justify-between w-full items-center">
             <p className="text-gray-500">Planos e comições</p>
             <ChevronRight color={Colors.GRAY[500]} size={25} />
           </div>

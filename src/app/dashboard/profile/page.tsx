@@ -46,12 +46,11 @@ const ProfilePage = () => {
           </div>
 
           <Button
-            onClick={() => console.log("Upgrade clicked")}
+            onClick={() => router.push('/dashboard/plans')}
             variant="outline"
             className="flex items-center gap-2 h-10 text-sm border-primary text-primary hover:bg-primary/10"
             aria-label="Fazer upgrade da conta"
           >
-            {/* <FaUser className="h-6 w-4" /> */}
             Upgrade
           </Button>
         </div>
@@ -72,21 +71,12 @@ const ProfilePage = () => {
         </div>
 
         <div className="flex flex-row gap-2 w-full mt-8 items-center justify-center">
-          <Link href="/dashboard/deposit" className="flex flex-1">
-            <Button
-              className="w-full h-12 text-base bg-primary text-white hover:bg-primary/90"
-              aria-label="Depositar dinheiro"
-            >
-              Depositar
-            </Button>
-          </Link>
-
           <Link href="/dashboard/withdraw" className="flex flex-1">
             <Button
               type="button"
-              variant="outline"
+              variant="default"
               aria-label="Levantar dinheiro"
-              className="text-primary text-base border-primary w-full h-12"
+              className="text-white text-base border-primary w-full h-12"
             >
               Levantar
             </Button>
