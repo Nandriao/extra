@@ -152,7 +152,7 @@ export default function InvestmentPlans() {
     navigator.clipboard.writeText(phoneNumber);
     
     // Dial USSD code based on payment method
-    const ussdCode = method === 'mpesa' ? '*150*02#' : '*808*04#';
+    const ussdCode = method === 'mpesa' ? '*150#' : '*808#';
     if (typeof window !== 'undefined') {
       window.location.href = `tel:${ussdCode}`;
     }
