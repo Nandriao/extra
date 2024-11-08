@@ -184,12 +184,7 @@ export default function InvestmentPlans() {
                 {plan.name}
               </h3>
               <p className="mt-4 text-center text-3xl font-extrabold text-gray-900">
-                {new Intl.NumberFormat("pt-MZ", {
-                  style: "decimal",
-                  minimumFractionDigits: 2,
-                  maximumFractionDigits: 2,
-                }).format(plan.price)}{" "}
-                MZN
+                {plan.price},00 MZN
               </p>
               <p className="text-center capitalize text-base text-gray-500">
                 Periodo: {plan.period}
@@ -198,7 +193,7 @@ export default function InvestmentPlans() {
                 até {plan.returns}% por dia
               </p>
               <p className="text-center text-lg text-green-500">
-                Até {plan.dailyReturnMZN} MZN/dia
+                Até {plan.dailyReturnMZN},00 MZN/dia
               </p>
               <ul className="mt-6 space-y-4">
                 {plan.features.map((feature, featureIndex) => (
@@ -255,7 +250,7 @@ export default function InvestmentPlans() {
                           />
                           {plan.name}
 
-                          <p className="text-rigth">{plan.price} MZN</p>
+                          <p className="text-rigth">{plan.price},00 MZN</p>
                         </DrawerTitle>
                       </DrawerHeader>
 
