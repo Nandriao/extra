@@ -32,11 +32,13 @@ import ItemsCard from "@/components/itemsCard";
 import PlansSmall from "@/components/plansSmall";
 import OperationCard from "@/components/OperationCard";
 import Loading from "./loading";
+import MedalSlider from "@/components/MedalSlider";
 
 export default function Home() {
   const [show, setShow] = useState<boolean>(true);
 
   const [active, setActive] = useState<number>(1);
+
   return (
     <main className="flex flex-col mt-3 mb-3">
       <div className="flex flex-col gap-3">
@@ -73,20 +75,24 @@ export default function Home() {
 
         <ScrollArea className="w-full">
           <div className="flex px-3 w-max gap-2">
-            <OperationCard
+            <div className="flex flex-col w-[50%] items-center shadow-md active:opacity-50 transition-all bg-gray-200 rounded-md p-2">
+              <MedalSlider />
+              <p className="text-gray-500 pb-1">Planos</p>
+            </div>
+            {/* <OperationCard
               href="/dashboard/deposit"
               imageSrc={Deposit}
               imageAlt="Deposit"
               title="Depósitar"
-            />
-            
+            /> */}
+
             <OperationCard
               href="/dashboard/plans"
               imageSrc={Send}
               imageAlt="plans"
               title="Investir"
             />
-            
+
             <OperationCard
               href="/dashboard/withdraw"
               imageSrc={Withdraw}
@@ -98,57 +104,10 @@ export default function Home() {
         </ScrollArea>
 
         <div className="flex flex-col gap-2">
-          <div className="flex px-3  flex-row justify-between w-full items-center">
+          <div className="flex px-3 flex-row justify-between w-full items-center">
             <p className="text-gray-500">Planos e comições</p>
             <ChevronRight color={Colors.GRAY[500]} size={25} />
           </div>
-          
-          <ScrollArea className="w-full">
-            <div className="flex px-3 pb-2 w-max gap-2">
-              <PlansSmall
-                active={active === 1 ? 1 : 0}
-                name="Bronze"
-                logo={Bronze}
-                clickFunction={() => setActive(1)}
-              />
-
-              <PlansSmall
-                active={active === 2 ? 1 : 0}
-                name="Silver" 
-                logo={Silver}
-                clickFunction={() => setActive(2)}
-              />
-
-              <PlansSmall
-                active={active === 3 ? 1 : 0}
-                name="Gold"
-                logo={Gold}
-                clickFunction={() => setActive(3)}
-              />
-
-              <PlansSmall
-                active={active === 4 ? 1 : 0}
-                name="Platinum"
-                logo={Platinum}
-                clickFunction={() => setActive(4)}
-              />
-
-              <PlansSmall
-                active={active === 5 ? 1 : 0}
-                name="Emerald"
-                logo={Emerald}
-                clickFunction={() => setActive(5)}
-              />
-
-              <PlansSmall
-                active={active === 6 ? 1 : 0}
-                name="Diamond"
-                logo={Diamond}
-                clickFunction={() => setActive(6)}
-              />
-            </div>
-            <ScrollBar orientation="horizontal" />
-          </ScrollArea>
         </div>
 
         <div className="flex px-3  flex-col gap-2 flex-wrap ">

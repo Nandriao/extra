@@ -1,6 +1,6 @@
 "use client";
 
-import Link from 'next/link'
+import { useRouter } from "next/navigation";
 
 import Bronze from "@/assets/medalhas/bronze.png";
 import Silver from "@/assets/medalhas/silver.png";
@@ -9,75 +9,84 @@ import Platinum from "@/assets/medalhas/platinum.png";
 import Emerald from "@/assets/medalhas/emerald.png";
 import Diamond from "@/assets/medalhas/diamond.png";
 
+import { ArrowLeft } from "lucide-react";
+import { Button } from "@/components/ui/button";
+
 const plans = [
   {
     name: "Plano Bronze",
     price: "500 MZN/sem",
-    returns: "8% a.a.",
+    returns: "5",
+    dailyReturnMZN: "25",
     icon: Bronze,
     features: [
       "Investimento mínimo baixo",
-      "Resgate a qualquer momento",
+      "Resgate a qualquer momento", 
       "Suporte básico",
-      "Relatórios mensais"
-    ]
+      "Relatórios mensais",
+    ],
   },
   {
-    name: "Plano Prata",
+    name: "Plano Prata", 
     price: "1.000 MZN/sem",
-    returns: "12% a.a.",
+    returns: "7.5",
+    dailyReturnMZN: "75",
     icon: Silver,
     features: [
       "Investimento moderado",
       "Resgate em 30 dias",
-      "Suporte prioritário",
+      "Suporte prioritário", 
       "Relatórios semanais",
-      "Consultoria mensal"
-    ]
+      "Consultoria mensal",
+    ],
   },
   {
     name: "Plano Ouro",
-    price: "2.500 MZN/sem",
-    returns: "15% a.a.",
+    price: "2.500 MZN/sem", 
+    returns: "10",
+    dailyReturnMZN: "250",
     icon: Gold,
     features: [
       "Investimento alto",
       "Resgate em 60 dias",
       "Suporte VIP",
       "Relatórios diários",
-      "Consultoria semanal"
-    ]
+      "Consultoria semanal",
+    ],
   },
   {
     name: "Plano Platina",
-    price: "5.000 MZN/sem",
-    returns: "18% a.a.",
+    price: "5.000 MZN/mês",
+    returns: "12.5",
+    dailyReturnMZN: "625",
     icon: Platinum,
     features: [
       "Investimento premium",
-      "Resgate em 90 dias",
+      "Resgate em 90 dias", 
       "Suporte 24/7",
       "Relatórios personalizados",
-      "Consultoria quinzenal"
-    ]
+      "Consultoria quinzenal",
+    ],
   },
   {
     name: "Plano Esmeralda",
-    price: "10.000 MZN/sem",
-    returns: "20% a.a.",
+    price: "10.000 MZN/mês",
+    returns: "15",
+    dailyReturnMZN: "1.500",
     icon: Emerald,
     features: [
       "Investimento elite",
       "Resgate programado",
       "Gerente dedicado",
       "Dashboard exclusivo",
-      "Consultoria semanal"
-    ]
+      "Consultoria semanal",
+    ],
   },
   {
     name: "Plano Diamante",
-    price: "25.000 MZN/sem",
-    returns: "25% a.a.",
+    price: "25.000 MZN/mês",
+    returns: "17.5",
+    dailyReturnMZN: "4.375",
     icon: Diamond,
     features: [
       "Investimento premium elite",
@@ -85,19 +94,37 @@ const plans = [
       "Gerente exclusivo 24/7",
       "Dashboard personalizado",
       "Consultoria diária",
-      "Eventos VIP"
-    ]
-  }
-]
+      "Eventos VIP",
+    ],
+  },
+];
 
 export default function InvestmentPlans() {
+  const router = useRouter();
+
+  const handleBack = () => {
+    router.back();
+  };
+
   return (
-    <div className="min-h-screen py-8 px-4 sm:px-6 lg:px-8 bg-white">
-      <div className="max-w-7xl mx-auto">
-        <div className="text-center">
-          <h2 className="text-3xl font-extrabold text-gray-900 sm:text-4xl">
-            Planos de Investimento
-          </h2>
+    <div className="min-h-screen py-6 px-3 bg-white">
+      <div className="flex items-center gap-4">
+        <Button
+          onClick={() => router.back()}
+          variant="ghost"
+          size="icon"
+          aria-label="Voltar"
+        >
+          <ArrowLeft className="h-6 w-6" />
+        </Button>
+        <h1 className="text-xl font-semibold text-gray-900">
+          Planos de Investimento
+        </h1>
+      </div>
+
+      <div className="max-w-7xl mx-auto pb-8 px-4 sm:px-6">
+
+        <div className="text-center pb-6">
           <p className="mt-4 text-xl text-gray-600">
             Escolha o plano que melhor se adequa ao seu perfil de investidor
           </p>
@@ -116,14 +143,17 @@ export default function InvestmentPlans() {
                   className="h-16 w-16 object-contain"
                 />
               </div>
-              <h3 className="text-2xl font-bold text-gray-900 text-center">
+              <h3 className="text-2xl font-bold text-gray-700 text-center">
                 {plan.name}
               </h3>
-              <p className="mt-4 text-center text-5xl font-extrabold text-gray-900">
+              <p className="mt-4 text-center text-3xl font-extrabold text-gray-900">
                 {plan.price}
               </p>
               <p className="mt-2 text-center text-xl text-green-600 font-semibold">
-                {plan.returns}
+                até {plan.returns}% por dia
+              </p>
+              <p className="text-center text-lg text-green-500">
+                Até {plan.dailyReturnMZN} MZN/dia
               </p>
               <ul className="mt-6 space-y-4">
                 {plan.features.map((feature, featureIndex) => (
@@ -160,14 +190,15 @@ export default function InvestmentPlans() {
         </div>
 
         <div className="mt-12 text-center">
-          <Link
-            href="/dashboard"
+          <button
+            onClick={handleBack}
             className="text-blue-600 hover:text-blue-800 font-medium"
+            aria-label="Voltar para o Dashboard"
           >
             Voltar para o Dashboard
-          </Link>
+          </button>
         </div>
       </div>
     </div>
-  )
+  );
 }
