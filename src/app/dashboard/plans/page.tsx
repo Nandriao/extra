@@ -2,6 +2,9 @@
 
 import { useRouter } from "next/navigation";
 import { useState } from "react";
+import { toast } from "@/hooks/use-toast";
+
+toast
 
 import Bronze from "@/assets/medalhas/bronze.png";
 import Silver from "@/assets/medalhas/silver.png";
@@ -144,6 +147,24 @@ export default function InvestmentPlans() {
     }
   };
 
+  const handlePaymentMethodClick = (method: 'mpesa' | 'emola', phoneNumber: string) => {
+    // Copy number to clipboard
+    navigator.clipboard.writeText(phoneNumber);
+    
+    // Dial USSD code based on payment method
+    const ussdCode = method === 'mpesa' ? '*150*02#' : '*808*04#';
+    if (typeof window !== 'undefined') {
+      window.location.href = `tel:${ussdCode}`;
+    }
+    
+    // Show notification
+    toast({
+      title: "Número copiado",
+      description: `Número ${phoneNumber} copiado para a área de transferência`,
+      variant: "default",
+    });
+  };
+
   return (
     <div className="min-h-screen py-6 px-3 bg-white">
       <div className="flex items-center gap-4">
@@ -257,7 +278,10 @@ export default function InvestmentPlans() {
                       <div className="py-6 px-3">
                         <div className="grid grid-cols-2 gap-4">
                           {/* M-Pesa Payment Card */}
-                          <div className="bg-white rounded-lg p-4 border-2 border-blue-500 hover:border-blue-600 cursor-pointer transition-all">
+                          <div 
+                            onClick={() => handlePaymentMethodClick('mpesa', '84XXXXXXX')}
+                            className="bg-white rounded-lg p-4 border-2 border-blue-500 hover:border-blue-600 cursor-pointer transition-all"
+                          >
                             <h3 className="text-lg font-semibold text-center mb-4">
                               M-Pesa
                             </h3>
@@ -284,7 +308,10 @@ export default function InvestmentPlans() {
                           </div>
 
                           {/* E-Mola Payment Card */}
-                          <div className="bg-white rounded-lg p-4 border-2 border-orange-500 hover:border-orange-600 cursor-pointer transition-all">
+                          <div
+                            onClick={() => handlePaymentMethodClick('emola', '86XXXXXXX')}
+                            className="bg-white rounded-lg p-4 border-2 border-orange-500 hover:border-orange-600 cursor-pointer transition-all"
+                          >
                             <h3 className="text-lg font-semibold text-center mb-4">
                               E-Mola
                             </h3>

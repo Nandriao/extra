@@ -74,10 +74,10 @@ export default function Home() {
         <ScrollArea className="w-full">
           <div className="flex px-3 w-max gap-2">
             <OperationCard
-              href="/dashboard/deposit"
+              href=""
               imageSrc={Bronze}
               imageAlt="Deposit"
-              title=""
+              title="Bronze"
             />
             
             <OperationCard
