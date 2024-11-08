@@ -28,10 +28,10 @@ import { Input } from "@/components/ui/input";
 const plans = [
   {
     name: "Plano Bronze",
-    price: 500,
+    price: "500,00",
     period: "semanal",
     returns: "5",
-    dailyReturnMZN: "25",
+    dailyReturnMZN: "25,00",
     icon: Bronze,
     features: [
       "Investimento mínimo baixo",
@@ -42,10 +42,10 @@ const plans = [
   },
   {
     name: "Plano Prata",
-    price: 1000,
+    price: "1.000,00",
     period: "semanal",
     returns: "7.5",
-    dailyReturnMZN: "75",
+    dailyReturnMZN: "75,00",
     icon: Silver,
     features: [
       "Investimento moderado",
@@ -57,10 +57,10 @@ const plans = [
   },
   {
     name: "Plano Ouro",
-    price: 2500,
+    price: "2.500,00",
     period: "semanal",
     returns: "10",
-    dailyReturnMZN: "250",
+    dailyReturnMZN: "250,00",
     icon: Gold,
     features: [
       "Investimento alto",
@@ -72,10 +72,10 @@ const plans = [
   },
   {
     name: "Plano Platina",
-    price: 5000,
+    price: "5.000,00",
     period: "mensal",
     returns: "12.5",
-    dailyReturnMZN: "625",
+    dailyReturnMZN: "625,00",
     icon: Platinum,
     features: [
       "Investimento premium",
@@ -87,10 +87,10 @@ const plans = [
   },
   {
     name: "Plano Esmeralda",
-    price: 10000,
+    price: "10.000,00",
     period: "mensal",
     returns: "15",
-    dailyReturnMZN: "1.500",
+    dailyReturnMZN: "1.500,00",
     icon: Emerald,
     features: [
       "Investimento elite",
@@ -102,10 +102,10 @@ const plans = [
   },
   {
     name: "Plano Diamante",
-    price: 25000,
+    price: "25.000,00",
     period: "mensal",
     returns: "17.5",
-    dailyReturnMZN: "4.375",
+    dailyReturnMZN: "4.375,00",
     icon: Diamond,
     features: [
       "Investimento premium elite",
@@ -205,7 +205,7 @@ export default function InvestmentPlans() {
                 {plan.name}
               </h3>
               <p className="mt-4 text-center text-3xl font-extrabold text-gray-900">
-                {plan.price},00 MZN
+                {plan.price} <span className="text-2xl">MZN</span>
               </p>
               <p className="text-center capitalize text-base text-gray-500">
                 Periodo: {plan.period}
@@ -214,7 +214,7 @@ export default function InvestmentPlans() {
                 até {plan.returns}% por dia
               </p>
               <p className="text-center text-lg text-green-500">
-                Até {plan.dailyReturnMZN},00 MZN/dia
+                Até {plan.dailyReturnMZN} <span>MZN</span>
               </p>
               <ul className="mt-6 space-y-4">
                 {plan.features.map((feature, featureIndex) => (
@@ -271,7 +271,7 @@ export default function InvestmentPlans() {
                           />
                           {plan.name}
 
-                          <p className="text-rigth">{plan.price},00 MZN</p>
+                          <p className="text-rigth">{plan.price} <span>MZN</span></p>
                         </DrawerTitle>
                       </DrawerHeader>
 
@@ -289,7 +289,7 @@ export default function InvestmentPlans() {
                               <p className="text-sm text-gray-600">
                                 Valor:{" "}
                                 <span className="font-semibold text-gray-900">
-                                  {plan.price}
+                                  {plan.price} <span>MZN</span>
                                 </span>
                               </p>
                               <p className="text-sm text-gray-600">
@@ -319,7 +319,7 @@ export default function InvestmentPlans() {
                               <p className="text-sm text-gray-600">
                                 Valor:{" "}
                                 <span className="font-semibold text-gray-900">
-                                  {plan.price}
+                                  {plan.price} <span>MZN</span>
                                 </span>
                               </p>
                               <p className="text-sm text-gray-600">
