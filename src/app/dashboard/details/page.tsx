@@ -17,8 +17,8 @@ const ProfileDetailsPage = () => {
   const router = useRouter();
 
   return (
-    <div className="py-6">
-      <div className="max-w-2xl">
+    <div className="py-6 max-w-2xl min-w-screen  bg-white">
+      <div className="w-screen">
         <div className="flex items-center px-3 gap-4 mb-6">
             <Button onClick={() => router.back()} variant="ghost" size="icon" aria-label="Voltar">
               <ArrowLeft className="h-6 w-6" />

@@ -25,24 +25,22 @@ function Header() {
       {loged ? (
         <div className="flex flex-row gap-2">
           <Link
-            href={"/"}
+            href={"/dashboard/notifications"}
             className="flex items-center rounded-md bg-purple-100 shadow-md active:opacity-50 relative"
             aria-label={`Você tem ${notificationCount} notificações`}
           >
             <FaBell color={Colors.PRYMARY} size={35} className="p-2" />
             {notificationCount > 0 && (
-              <span className="absolute -top-1 -right-1 bg-red-400 text-white text-xs rounded-full min-h-[20px] min-w-[20px] flex items-center justify-center px-1">
-                {notificationCount > 99 ? '99+' : notificationCount}
+              <span className="absolute -top-1 -right-1 bg-red-500 text-white text-xs rounded-full min-h-[20px] min-w-[20px] flex items-center justify-center px-1">
+                {notificationCount > 99 ? "99+" : notificationCount}
               </span>
             )}
           </Link>
-          
-          {pathname !== '/dashboard/profile' && (
+
+          {pathname !== "/dashboard/profile" && (
             <Link
               href="/dashboard/profile"
-              className="flex rounded-md bg-purple-100 shadow-md items-center active:opacity-50
-                transform transition-all duration-300 ease-in-out hover:scale-105
-                animate-in fade-in slide-in-from-right"
+              className="flex rounded-md bg-purple-100 shadow-md items-center active:opacity-50"
               aria-label="Ir para perfil"
             >
               <FaUser color={Colors.PRYMARY} size={35} className="p-2" />

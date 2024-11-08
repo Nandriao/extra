@@ -24,8 +24,8 @@ const HelpPage = () => {
   ];
 
   return (
-    <div className="py-6 px-2">
-      <div className="max-w-2xl">
+    <div className="py-6 px-2 max-w-2xl min-w-screen bg-white">
+      <div className="">
         <div className="flex items-center gap-4 mb-6">
           <Button onClick={() => router.back()} variant="ghost" size="icon" aria-label="Voltar">
             <ArrowLeft className="h-6 w-6" />
