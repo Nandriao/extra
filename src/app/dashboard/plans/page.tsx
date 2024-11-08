@@ -324,7 +324,7 @@ export default function InvestmentPlans() {
                             <li>
                               Cole a mensagem de confirmação no campo abaixo
                             </li>
-                            <li>Clique em "Confirmar Pagamento"</li>
+                            <li>Clique em &quot;Confirmar Pagamento&quot;</li>
                           </ol>
                         </div>
 
