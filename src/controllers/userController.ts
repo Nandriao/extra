@@ -4,7 +4,7 @@ import jwt from 'jsonwebtoken'
 
 export const userController = {
   // Criar usuário
-  async create(data: { name: string; email: string; password: string }) {
+  async create(data: { fullName: string; phone: string; password: string }) {
     const hashedPassword = await bcrypt.hash(data.password, 10)
     
     const user = await prisma.user.create({
@@ -23,11 +23,11 @@ export const userController = {
     const users = await prisma.user.findMany({
       select: {
         id: true,
-        name: true,
-        email: true,
+        fullName: true,
+        phone: true,
         createdAt: true,
         updatedAt: true,
-      },
+      },  
     })
     return users
   },
@@ -38,8 +38,8 @@ export const userController = {
       where: { id },
       select: {
         id: true,
-        name: true,
-        email: true,
+        fullName: true,
+        phone: true,
         createdAt: true,
         updatedAt: true,
       },
@@ -48,7 +48,7 @@ export const userController = {
   },
 
   // Atualizar usuário
-  async update(id: string, data: { name?: string; email?: string; password?: string }) {
+  async update(id: string, data: { fullName?: string; phone?: string; password?: string }) {
     if (data.password) {
       data.password = await bcrypt.hash(data.password, 10)
     }
@@ -58,8 +58,8 @@ export const userController = {
       data,
       select: {
         id: true,
-        name: true,
-        email: true,
+        fullName: true,
+        phone: true,
         createdAt: true,
         updatedAt: true,
       },
@@ -75,9 +75,9 @@ export const userController = {
   },
 
   // Login
-  async login(email: string, password: string) {
+  async login(phone: string, password: string) {
     const user = await prisma.user.findUnique({
-      where: { email },
+      where: { phone },
     })
 
     if (!user) {
