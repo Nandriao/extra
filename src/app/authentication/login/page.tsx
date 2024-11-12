@@ -73,7 +73,7 @@ export default function Login() {
 
       try {
         if (response.data.token !== null) {
-          localStorage.setItem("cartItems", JSON.stringify(response.data.token));
+          localStorage.setItem("@extra_user_token", JSON.stringify(response.data.token));
         }
       } catch (storageError) {
         console.error('Failed to store token:', storageError);
