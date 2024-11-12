@@ -10,7 +10,7 @@ export async function POST(request: Request) {
 
     if (!phoneNumber || !password) {
       return NextResponse.json(
-        { error: "Provide all fields" },
+        { error: "Por favor, preencha todos os campos" },
         { status: 400 }
       );
     }
@@ -22,7 +22,7 @@ export async function POST(request: Request) {
 
     if (!user) {
       return NextResponse.json(
-        { error: "Phone number or password is incorrect" },
+        { error: "Número de telefone ou senha incorretos" },
         { status: 401 }
       );
     }
@@ -32,7 +32,7 @@ export async function POST(request: Request) {
 
     if (!isValidPassword) {
       return NextResponse.json(
-        { error: "Phone number or password is incorrect" },
+        { error: "Número de telefone ou senha incorretos" },
         { status: 401 }
       );
     }
@@ -53,7 +53,7 @@ export async function POST(request: Request) {
     });
   } catch (error) {
     return NextResponse.json(
-      { error: "Something went wrong, please try again later" },
+      { error: "Algo deu errado, por favor tente novamente mais tarde" },
       { status: 500 }
     );
 

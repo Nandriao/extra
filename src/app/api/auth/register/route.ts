@@ -1,5 +1,6 @@
 import { NextResponse } from "next/server";
 import bcrypt from "bcryptjs";
+
 import { prisma } from "@/lib/prisma";
 
 export async function POST(request: Request) {
@@ -8,7 +9,7 @@ export async function POST(request: Request) {
 
     if (!fullName || !phoneNumber || !password || !termsAccepted) {
       return NextResponse.json(
-        { error: "Missing required fields" },
+        { error: "Campos obrigatórios não preenchidos" },
         { status: 400 }
       );
     }
@@ -20,7 +21,7 @@ export async function POST(request: Request) {
 
     if (existingUser) {
       return NextResponse.json(
-        { error: "Phone number already registered" },
+        { error: "Número de telefone já cadastrado" },
         { status: 400 }
       );
     }
@@ -44,7 +45,7 @@ export async function POST(request: Request) {
     return NextResponse.json(userWithoutPassword, { status: 201 });
   } catch (error) {
     return NextResponse.json(
-      { error: "Something went wrong, please try again later" },
+      { error: "Algo deu errado, por favor tente novamente mais tarde" },
       { status: 500 }
     );
 

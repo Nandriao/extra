@@ -23,7 +23,7 @@ import {
 } from "@/components/ui/form";
 
 import { toast } from '@/hooks/use-toast';
-import axios from 'axios';
+import { api } from '@/lib/axios';
 
 const formSchema = z.object({
   phone: z
@@ -71,7 +71,7 @@ export default function Login() {
     setIsSubmitting(true);
 
 
-      const response = await axios.post<LoginResponse>('http://localhost:3000/api/auth/login', {
+      const response = await api.post<LoginResponse>('/api/auth/login', {
         phoneNumber: Number(values.phone),
         password: values.password,
       });

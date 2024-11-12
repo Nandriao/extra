@@ -20,7 +20,8 @@ import {
 import { Checkbox } from "@/components/ui/checkbox";
 import Link from "next/link";
 import { toast } from '@/hooks/use-toast';
-import axios, { AxiosError } from 'axios';
+import { AxiosError } from 'axios';
+import { api } from '@/lib/axios';
 
 const formSchema = z
   .object({
@@ -53,15 +54,6 @@ const getIconColor = (field: any, formState: any, name: string) => {
   return "text-gray-500";
 };
 
-interface RegisterResponse {
-  message: string;
-  user: {
-    id: string;
-    fullName: string;
-    phone: string;
-  };
-}
-
 export default function Register() {
   const [showPassword, setShowPassword] = React.useState(false);
   const [showConfirmPassword, setShowConfirmPassword] = React.useState(false);
@@ -85,7 +77,7 @@ export default function Register() {
     try {
       setIsSubmitting(true);
 
-      await axios.post('http://localhost:3000/api/auth/register', {
+      await api.post('/api/auth/register', {
         fullName: values.fullName,
         phoneNumber: Number(values.phone),
         password: values.password,
