@@ -67,9 +67,14 @@ export default function Login() {
   });
 
   const handleSubmit = async (values: z.infer<typeof formSchema>) => {
-    setIsSubmitting(true);
     try {
-      const response = await axios.post<LoginResponse>('/auth/login', values);
+    setIsSubmitting(true);
+
+
+      const response = await axios.post<LoginResponse>('http://localhost:3000/api/auth/login', {
+        phoneNumber: Number(values.phone),
+        password: values.password,
+      });
 
       try {
         if (response.data.token !== null) {
@@ -94,9 +99,12 @@ export default function Login() {
       router.push('/');
 
     } catch (error: any) {
+      
+      console.log(error)
+
       toast({
         title: "Erro",
-        description: error.response?.data?.message || 'Credenciais inválidas',
+        description: error.response.data.error,
         variant: "destructive",
       });
     } finally {

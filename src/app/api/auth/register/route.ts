@@ -15,7 +15,7 @@ export async function POST(request: Request) {
 
     // Check if user already exists
     const existingUser = await prisma.user.findUnique({
-      where: { phoneNumber },
+      where: { phoneNumber: Number(phoneNumber) },
     });
 
     if (existingUser) {
@@ -32,7 +32,7 @@ export async function POST(request: Request) {
     const user = await prisma.user.create({
       data: {
         fullName,
-        phoneNumber,
+        phoneNumber: Number(phoneNumber),
         password: hashedPassword,
         termsAccepted,
       },
@@ -44,8 +44,10 @@ export async function POST(request: Request) {
     return NextResponse.json(userWithoutPassword, { status: 201 });
   } catch (error) {
     return NextResponse.json(
-      { error: "Error creating user" },
+      { error: "Something went wrong, please try again later" },
       { status: 500 }
     );
+
+    // console.log(error)
   }
 } 

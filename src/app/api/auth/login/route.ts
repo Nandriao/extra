@@ -1,4 +1,5 @@
 import { NextResponse } from "next/server";
+
 import bcrypt from "bcryptjs";
 import jwt from "jsonwebtoken";
 import { prisma } from "@/lib/prisma";
@@ -9,19 +10,19 @@ export async function POST(request: Request) {
 
     if (!phoneNumber || !password) {
       return NextResponse.json(
-        { error: "Missing required fields" },
+        { error: "Provide all fields" },
         { status: 400 }
       );
     }
 
     // Find user
     const user = await prisma.user.findUnique({
-      where: { phoneNumber: phoneNumber},
+      where: { phoneNumber: Number(phoneNumber)},
     });
 
     if (!user) {
       return NextResponse.json(
-        { error: "Invalid credentials" },
+        { error: "Phone number or password is incorrect" },
         { status: 401 }
       );
     }
@@ -31,7 +32,7 @@ export async function POST(request: Request) {
 
     if (!isValidPassword) {
       return NextResponse.json(
-        { error: "Invalid credentials" },
+        { error: "Phone number or password is incorrect" },
         { status: 401 }
       );
     }
@@ -40,7 +41,7 @@ export async function POST(request: Request) {
     const token = jwt.sign(
       { userId: user.id },
       process.env.JWT_SECRET!,
-      { expiresIn: "24h" }
+      { expiresIn: "15m" }
     );
 
     // Remove password from response
@@ -52,8 +53,10 @@ export async function POST(request: Request) {
     });
   } catch (error) {
     return NextResponse.json(
-      { error: "Error during login" },
+      { error: "Something went wrong, please try again later" },
       { status: 500 }
     );
+
+    // console.log(error)
   }
 } 

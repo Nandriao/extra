@@ -19,8 +19,8 @@ import {
 } from "@/components/ui/form";
 import { Checkbox } from "@/components/ui/checkbox";
 import Link from "next/link";
-import { useAxios } from '@/hooks/useAxios';
 import { toast } from '@/hooks/use-toast';
+import axios, { AxiosError } from 'axios';
 
 const formSchema = z
   .object({
@@ -65,7 +65,7 @@ interface RegisterResponse {
 export default function Register() {
   const [showPassword, setShowPassword] = React.useState(false);
   const [showConfirmPassword, setShowConfirmPassword] = React.useState(false);
-  const { fetchData, loading: isSubmitting } = useAxios<RegisterResponse>();
+  const [isSubmitting, setIsSubmitting] = React.useState(false);
 
   const router = useRouter();
   
@@ -81,33 +81,65 @@ export default function Register() {
   });
 
   const handleSubmit = async (values: z.infer<typeof formSchema>) => {
+    
     try {
-      await fetchData({
-        method: 'POST',
-        url: '/auth/register',
-        data: {
-          fullName: values.fullName,
-          phone: values.phone,
-          password: values.password,
-        },
-      });
-      
+      setIsSubmitting(true);
+
+      await axios.post('http://localhost:3000/api/auth/register', {
+        fullName: values.fullName,
+        phoneNumber: Number(values.phone),
+        password: values.password,
+        termsAccepted: values.terms,
+      })
+
       toast({
         title: "Sucesso!",
         description: "Conta criada com sucesso!",
         variant: "default",
       });
 
-      // Redirect to login or dashboard
       router.push('/authentication/login');
 
-    } catch (error: any) {
+    } catch (error) {
+      const axiosError = error as AxiosError<{ error: string }>;
       toast({
         title: "Erro",
-        description: error.response?.data?.message || 'Erro ao criar conta',
+        description: axiosError.response?.data?.error,
         variant: "destructive",
       });
+    } finally {
+      setIsSubmitting(false);
     }
+
+    // try {
+    //   setIsSubmitting(true);
+    //   await axios({
+    //     method: 'POST',
+    //     url: 'http://localhost.3000/api/auth/register',
+    //     data: {
+    //       fullName: values.fullName,
+    //       phone: values.phone,
+    //       password: values.password,
+    //     },
+    //   });
+      
+    //   toast({
+    //     title: "Sucesso!",
+    //     description: "Conta criada com sucesso!",
+    //     variant: "default",
+    //   });
+
+    //   router.push('/authentication/login');
+
+    // } catch (error: any) {
+    //   toast({
+    //     title: "Erro",
+    //     description: error.response?.data?.message || 'Erro ao criar conta',
+    //     variant: "destructive",
+    //   });
+    // } finally {
+    //   setIsSubmitting(false);
+    // }
   };
 
   const handleTogglePassword = () => {
