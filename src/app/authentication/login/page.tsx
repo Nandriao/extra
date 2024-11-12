@@ -1,13 +1,19 @@
 "use client";
 
 import React from "react";
-import { Eye, EyeOff, Phone, Lock, Loader2 } from "lucide-react";
-import * as z from "zod";
+import Link from "next/link";
 import { useRouter } from "next/navigation";
+
+import * as z from "zod";
 import { useForm } from "react-hook-form";
+
 import { zodResolver } from "@hookform/resolvers/zod";
+
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
+
+import { Eye, EyeOff, Phone, Lock, Loader2 } from "lucide-react";
+
 import {
   Form,
   FormControl,
@@ -15,7 +21,7 @@ import {
   FormItem,
   FormMessage,
 } from "@/components/ui/form";
-import Link from "next/link";
+
 import { useAxios } from '@/hooks/useAxios';
 import { toast } from '@/hooks/use-toast';
 
@@ -68,10 +74,18 @@ export default function Login() {
         data: values,
       });
 
-      if (!response) return;
-
-      localStorage.setItem('token', response.token);
-
+      try {
+        localStorage.setItem('token', response.token);
+      } catch (storageError) {
+        console.error('Failed to store token:', storageError);
+        toast({
+          title: "Aviso",
+          description: "Não foi possível salvar suas credenciais. Verifique as configurações do navegador.",
+          variant: "destructive",
+        });
+        return;
+      }
+      
       toast({
         title: "Sucesso!",
         description: "Login realizado com sucesso!",

@@ -59,7 +59,7 @@ export async function PUT(
 
     const { fullName, phoneNumber, password, termsAccepted } = await request.json();
     
-    let updateData: any = {
+    const updateData: any = {
       fullName,
       phoneNumber,
       termsAccepted,
