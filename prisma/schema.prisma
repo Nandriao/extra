@@ -16,7 +16,7 @@ datasource db {
 model User {
   id            String   @id @default(auto()) @map("_id") @db.ObjectId
   fullName      String
-  phoneNumber   Int   @unique
+  phoneNumber   String   @unique
 
   balance       Float  @default(0)
   pendentBalance Float  @default(0)
