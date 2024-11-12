@@ -16,11 +16,14 @@ datasource db {
 model User {
   id            String   @id @default(auto()) @map("_id") @db.ObjectId
   fullName      String
-  phoneNumber   String   @unique
-  balance       Int  @default(0)
-  pendentBalance Int  @default(0)
+  phoneNumber   Int   @unique
+
+  balance       Float  @default(0)
+  pendentBalance Float  @default(0)
+
   password      String
   termsAccepted Boolean  @default(false)
+  
   createdAt     DateTime @default(now())
   updatedAt     DateTime @updatedAt
 }
