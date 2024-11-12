@@ -22,8 +22,8 @@ import {
   FormMessage,
 } from "@/components/ui/form";
 
-import { useAxios } from '@/hooks/useAxios';
 import { toast } from '@/hooks/use-toast';
+import axios from 'axios';
 
 const formSchema = z.object({
   phone: z
@@ -55,7 +55,7 @@ interface LoginResponse {
 
 export default function Login() {
   const [showPassword, setShowPassword] = React.useState(false);
-  const { fetchData, loading: isSubmitting } = useAxios<LoginResponse>();
+  const [isSubmitting, setIsSubmitting] = React.useState(false);
   const router = useRouter();
   
   const form = useForm<z.infer<typeof formSchema>>({
@@ -67,15 +67,14 @@ export default function Login() {
   });
 
   const handleSubmit = async (values: z.infer<typeof formSchema>) => {
+    setIsSubmitting(true);
     try {
-      const response = await fetchData({
-        method: 'POST',
-        url: '/auth/login',
-        data: values,
-      });
+      const response = await axios.post<LoginResponse>('/auth/login', values);
 
       try {
-        localStorage.setItem('token', response.token);
+        if (response.data.token !== null) {
+          localStorage.setItem("cartItems", JSON.stringify(response.data.token));
+        }
       } catch (storageError) {
         console.error('Failed to store token:', storageError);
         toast({
@@ -100,6 +99,8 @@ export default function Login() {
         description: error.response?.data?.message || 'Credenciais inválidas',
         variant: "destructive",
       });
+    } finally {
+      setIsSubmitting(false);
     }
   };
 
