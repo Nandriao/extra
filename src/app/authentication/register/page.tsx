@@ -3,6 +3,9 @@
 import React from "react";
 import { Eye, EyeOff, Phone, User, Mail, Lock, Calendar, Loader2 } from "lucide-react";
 import * as z from "zod";
+
+import { useRouter } from "next/navigation";
+
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { Button } from "@/components/ui/button";
@@ -16,6 +19,8 @@ import {
 } from "@/components/ui/form";
 import { Checkbox } from "@/components/ui/checkbox";
 import Link from "next/link";
+import { useAxios } from '@/hooks/useAxios';
+import { toast } from '@/hooks/use-toast';
 
 const formSchema = z
   .object({
@@ -48,11 +53,22 @@ const getIconColor = (field: any, formState: any, name: string) => {
   return "text-gray-500";
 };
 
+interface RegisterResponse {
+  message: string;
+  user: {
+    id: string;
+    fullName: string;
+    phone: string;
+  };
+}
+
 export default function Register() {
   const [showPassword, setShowPassword] = React.useState(false);
   const [showConfirmPassword, setShowConfirmPassword] = React.useState(false);
-  const [isLoading, setIsLoading] = React.useState(false);
+  const { fetchData, loading: isSubmitting } = useAxios<RegisterResponse>();
 
+  const router = useRouter();
+  
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
     defaultValues: {
@@ -65,15 +81,32 @@ export default function Register() {
   });
 
   const handleSubmit = async (values: z.infer<typeof formSchema>) => {
-    setIsLoading(true);
     try {
-      // Simulate API call with 5 second delay
-      await new Promise((resolve) => setTimeout(resolve, 5000));
-      console.log("Form submitted:", values);
-    } catch (error) {
-      console.log("Error submitting form:", error);
-    } finally {
-      setIsLoading(false);
+      await fetchData({
+        method: 'POST',
+        url: '/auth/register',
+        data: {
+          fullName: values.fullName,
+          phone: values.phone,
+          password: values.password,
+        },
+      });
+      
+      toast({
+        title: "Sucesso!",
+        description: "Conta criada com sucesso!",
+        variant: "default",
+      });
+
+      // Redirect to login or dashboard
+      router.push('/authentication/login');
+
+    } catch (error: any) {
+      toast({
+        title: "Erro",
+        description: error.response?.data?.message || 'Erro ao criar conta',
+        variant: "destructive",
+      });
     }
   };
 
@@ -274,9 +307,9 @@ export default function Register() {
           <Button 
             type="submit" 
             className="w-full text-base h-12"
-            disabled={isLoading}
+            disabled={isSubmitting}
           >
-            {isLoading ? (
+            {isSubmitting ? (
               <>
                 <Loader2 className="mr-2 h-6 w-6 animate-spin" />
                 Criando conta...
