@@ -15,8 +15,8 @@ export async function POST(request: Request) {
     }
 
     // Find user
-    const user = await prisma.user.findFirst({
-      where: { phoneNumber },
+    const user = await prisma.user.findUnique({
+      where: { phoneNumber: phoneNumber},
     });
 
     if (!user) {
