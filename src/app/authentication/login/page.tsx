@@ -3,6 +3,7 @@
 import React from "react";
 import { Eye, EyeOff, Phone, Lock, Loader2 } from "lucide-react";
 import * as z from "zod";
+import { useRouter } from "next/navigation";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { Button } from "@/components/ui/button";
@@ -15,6 +16,8 @@ import {
   FormMessage,
 } from "@/components/ui/form";
 import Link from "next/link";
+import { useAxios } from '@/hooks/useAxios';
+import { toast } from '@/hooks/use-toast';
 
 const formSchema = z.object({
   phone: z
@@ -34,10 +37,21 @@ const getIconColor = (field: any, formState: any, name: string) => {
   return "text-gray-500";
 };
 
+interface LoginResponse {
+  message: string;
+  token: string;
+  user: {
+    id: string;
+    fullName: string;
+    phone: string;
+  };
+}
+
 export default function Login() {
   const [showPassword, setShowPassword] = React.useState(false);
-  const [isLoading, setIsLoading] = React.useState(false);
-
+  const { fetchData, loading: isSubmitting } = useAxios<LoginResponse>();
+  const router = useRouter();
+  
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
     defaultValues: {
@@ -47,14 +61,31 @@ export default function Login() {
   });
 
   const handleSubmit = async (values: z.infer<typeof formSchema>) => {
-    setIsLoading(true);
     try {
-      await new Promise((resolve) => setTimeout(resolve, 10000));
-      console.log("Form submitted:", values);
-    } catch (error) {
-      console.log("Form notsubmitted", error);
-    } finally {
-      setIsLoading(false);
+      const response = await fetchData({
+        method: 'POST',
+        url: '/auth/login',
+        data: values,
+      });
+
+      if (!response) return;
+
+      localStorage.setItem('token', response.token);
+
+      toast({
+        title: "Sucesso!",
+        description: "Login realizado com sucesso!",
+        variant: "default",
+      });
+
+      router.push('/');
+
+    } catch (error: any) {
+      toast({
+        title: "Erro",
+        description: error.response?.data?.message || 'Credenciais inválidas',
+        variant: "destructive",
+      });
     }
   };
 
@@ -66,9 +97,7 @@ export default function Login() {
     <main className="flex flex-col min-h-[90vh] items-center justify-center w-full p-2">
       <Form {...form}>
         <div className="flex flex-col gap-4 items-center justify-center mb-11">
-          <h1 className="text-2xl font-bold text-primary">
-            Bem vindo(a) de volta
-          </h1>
+          <h1 className="text-2xl font-bold text-primary">Bem vindo(a) de volta!</h1>
           <p className="text-base text-gray-500 text-center">
             Entre com suas credenciais para acessar sua conta
           </p>
@@ -91,8 +120,8 @@ export default function Login() {
                     inputMode="numeric"
                     className="placeholder:text-gray-500 shadow-sm text-base text-gray-700 bg-gray-100 h-12 border-none"
                     startAdornment={
-                      <Phone
-                        size={22}
+                      <Phone 
+                        size={22} 
                         className={getIconColor(field, form.formState, "phone")}
                       />
                     }
@@ -116,13 +145,9 @@ export default function Login() {
                       placeholder="Senha"
                       className="placeholder:text-gray-500 shadow-sm text-base text-gray-700 bg-gray-100 h-12 border-none"
                       startAdornment={
-                        <Lock
-                          size={22}
-                          className={getIconColor(
-                            field,
-                            form.formState,
-                            "password"
-                          )}
+                        <Lock 
+                          size={22} 
+                          className={getIconColor(field, form.formState, "password")}
                         />
                       }
                     />
@@ -132,9 +157,7 @@ export default function Login() {
                       size="icon"
                       className="absolute right-2 top-1/2 -translate-y-1/2 h-8 w-8 px-0"
                       onClick={handleTogglePassword}
-                      aria-label={
-                        showPassword ? "Ocultar senha" : "Mostrar senha"
-                      }
+                      aria-label={showPassword ? "Ocultar senha" : "Mostrar senha"}
                     >
                       {showPassword ? (
                         <EyeOff size={22} className="text-gray-500" />
@@ -158,12 +181,12 @@ export default function Login() {
             </Link>
           </div>
 
-          <Button
-            type="submit"
+          <Button 
+            type="submit" 
             className="w-full text-base h-12"
-            disabled={isLoading}
+            disabled={isSubmitting}
           >
-            {isLoading ? (
+            {isSubmitting ? (
               <>
                 <Loader2 className="mr-2 h-6 w-6 animate-spin" />
                 Entrando...
