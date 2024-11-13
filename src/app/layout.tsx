@@ -3,8 +3,6 @@ import type { Metadata } from "next";
 import "./globals.css";
 
 import { Toaster } from "@/components/ui/toaster";
-import Header from "@/components/header";
-import Footer from "@/components/footer";
 import { AuthProvider } from "@/contexts/AuthContext";
 
 export const metadata: Metadata = {
@@ -19,12 +17,10 @@ export default function RootLayout({
 }) {
   return (  
     <html lang="pt-BR">
-      <body className="min-h-screen">
+      <body className="min-h-screen px-2">
         <AuthProvider>
           <Toaster />
-          <Header />
           {children}
-          <Footer />
         </AuthProvider>
       </body>
     </html>

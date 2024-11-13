@@ -2,7 +2,7 @@
 
 import React, { createContext, useCallback, useEffect, useState } from "react";
 
-import {api} from "../lib/axios"
+import { api } from "../lib/axios";
 
 interface User {
   id: string;
@@ -35,44 +35,51 @@ export function AuthProvider({ children }: AuthProviderProps) {
   const [isLoading, setIsLoading] = useState(false);
 
   useEffect(() => {
-    setIsLoading(true);
     const token = localStorage.getItem("@extra_user_token");
 
     if (token) {
+      setIsLoading(true);
+
       const parsedToken = JSON.parse(token);
       api.defaults.headers.authorization = `Bearer ${parsedToken}`;
-      
+
       // Updated POST request to include token in the body
-      api.post("/api/users/me", { token: parsedToken }).then(response => {
-        setUser(response.data.user);
-        setIsAuthenticated(true);
-        setIsLoading(false);
-      }).catch(() => {
-        signOut();
-        setIsLoading(false);
-      });
+      api
+        .post("/api/users/me", { token: parsedToken })
+        .then((response) => {
+          setUser(response.data.user);
+          setIsAuthenticated(true);
+          setIsLoading(false);
+        })
+        .catch(() => {
+          signOut();
+          setIsLoading(false);
+        });
     }
   }, []);
 
-  const signIn = useCallback(async ({ phoneNumber, password }: SignInCredentials) => {
-    const response = await api.post("/api/auth/login", {
-      phoneNumber,
-      password,
-    });
+  const signIn = useCallback(
+    async ({ phoneNumber, password }: SignInCredentials) => {
+      const response = await api.post("/api/auth/login", {
+        phoneNumber,
+        password,
+      });
 
-    const { token, user } = response.data;
+      const { token, user } = response.data;
 
-    // console.log(token);
+      // console.log(token);
 
-    localStorage.setItem("@extra_user_token", JSON.stringify(token));
+      localStorage.setItem("@extra_user_token", JSON.stringify(token));
 
-    api.defaults.headers.authorization = `Bearer ${token}`;
+      api.defaults.headers.authorization = `Bearer ${token}`;
 
-    const tok = localStorage.getItem("@extra_user_token");
+      const tok = localStorage.getItem("@extra_user_token");
 
-    setUser(user);
-    setIsAuthenticated(true);
-  }, []);
+      setUser(user);
+      setIsAuthenticated(true);
+    },
+    []
+  );
 
   const signOut = useCallback(() => {
     localStorage.removeItem("@extra_user_token");
@@ -82,8 +89,10 @@ export function AuthProvider({ children }: AuthProviderProps) {
   }, []);
 
   return (
-    <AuthContext.Provider value={{ user, isAuthenticated, signIn, signOut, isLoading }}>
+    <AuthContext.Provider
+      value={{ user, isAuthenticated, signIn, signOut, isLoading }}
+    >
       {children}
     </AuthContext.Provider>
   );
-} 
+}
