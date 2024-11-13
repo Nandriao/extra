@@ -75,11 +75,11 @@ const ProfilePage = () => {
         <div className="flex flex-col mt-7 px-2 gap-2">
           <div className="flex flex-row items-center justify-between gap-2">
             <p className="text-gray-700 text-base">Saldo em dinheiro</p>
-            <p className="text-gray-700 text-base">{formatNumber(user?.balance ?? 0)} MZN</p>
+            <p className="text-gray-700 text-base">{formatNumber(Number(user?.balance) ?? 0)} MZN</p>
           </div>
           <div className="flex flex-row items-center justify-between gap-2">
             <p className="text-gray-700 text-base">Investido</p>
-            <p className="text-gray-700 text-base">{formatNumber(user?.pendentBalance ?? 0)} MZN</p>
+            <p className="text-gray-700 text-base">{formatNumber(Number(user?.pendentBalance) ?? 0)} MZN</p>
           </div>
         </div>
 

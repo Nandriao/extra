@@ -88,7 +88,7 @@ export default function Home() {
                     </Button>
                   </div>
                   <p className="text-2xl transition-all flex flex-row text-gray-600 font-semibold font-[poppins]">
-                    {show ? formatNumber(user?.balance ?? 0) : "****"} MZN
+                    {show ? formatNumber(Number(user?.balance) ?? 0) : "****"} MZN
                   </p>
                 </div>
               </div>
