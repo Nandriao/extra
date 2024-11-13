@@ -19,7 +19,7 @@ export default function Dashboard({ children }: { children: React.ReactNode }) {
   if (isLoading) {
     return <Loading />;
   } else {
-    if (!isAuthenticated) {
+    if (isAuthenticated) {
       return (
         <div>
           <Header />
@@ -28,7 +28,7 @@ export default function Dashboard({ children }: { children: React.ReactNode }) {
         </div>
       );
     } else {
-      router.push("/");
+      router.push("/authentication/login");
     }
   }
 

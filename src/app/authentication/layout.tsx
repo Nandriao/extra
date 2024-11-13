@@ -31,7 +31,7 @@ export default function RootLayout({
         </div>
       );
     } else {
-      router.push("/authentication/login");
+      router.push("/");
     }
   }
 
