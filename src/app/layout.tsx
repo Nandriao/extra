@@ -17,7 +17,7 @@ export default function RootLayout({
 }) {
   return (  
     <html lang="pt-BR">
-      <body className="min-h-screen px-2">
+      <body className="min-h-screen">
         <AuthProvider>
           <Toaster />
           {children}

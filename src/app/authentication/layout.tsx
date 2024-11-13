@@ -24,9 +24,11 @@ export default function RootLayout({
   } else {
     if (!isAuthenticated) {
       return (
-        <div>
+        <div className="min-h-screen">
           <Header />
-          {children}
+          <div className="px-2">
+            {children}
+          </div>
           <Footer />
         </div>
       );
