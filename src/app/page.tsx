@@ -31,16 +31,22 @@ import { ChevronRight } from "lucide-react";
 import ItemsCard from "@/components/itemsCard";
 import PlansSmall from "@/components/plansSmall";
 import OperationCard from "@/components/OperationCard";
+
+import { useAuth } from "@/hooks/useAuth";
+
 import Loading from "./loading";
 
 export default function Home() {
   const [show, setShow] = useState<boolean>(true);
 
   const [active, setActive] = useState<number>(1);
+
+  const { isLoading } = useAuth();
   return (
     <main className="flex flex-col mt-3 mb-3">
-      <div className="flex flex-col gap-3">
-        <div className="flex px-3  flex-row items-center w-full">
+      {isLoading ? <Loading /> : (
+        <div className="flex flex-col gap-3">
+          <div className="flex px-3  flex-row items-center w-full">
           <Image src={Coins} alt="Balance" className="w-[150px] -ml-2  mt-3" />
           <div className="flex flex-col w-full">
             <div className="flex flex-row items-center justify-between w-full transition-all">
@@ -179,7 +185,7 @@ export default function Home() {
             category="500"
           />
         </div>
-      </div>
+      </div>)}
     </main>
   );
 }

@@ -1,10 +1,11 @@
+import React from "react";
 import type { Metadata } from "next";
 import "./globals.css";
 
 import { Toaster } from "@/components/ui/toaster";
-
 import Header from "@/components/header";
 import Footer from "@/components/footer";
+import { AuthProvider } from "@/contexts/AuthContext";
 
 export const metadata: Metadata = {
   title: "Extra",
@@ -16,14 +17,16 @@ export default function RootLayout({
 }: {
   children: React.ReactNode;
 }) {
-  return (
+  return (  
     <html lang="pt-BR">
-      <body className="">
-        <Toaster />
-        <Header/>
-        {children}
-        <Footer/>
-        </body>
+      <body className="min-h-screen">
+        <AuthProvider>
+          <Toaster />
+          <Header />
+          {children}
+          <Footer />
+        </AuthProvider>
+      </body>
     </html>
   );
 }

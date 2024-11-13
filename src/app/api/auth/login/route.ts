@@ -44,6 +44,8 @@ export async function POST(request: Request) {
       { expiresIn: "15m" }
     );
 
+    // console.log(token)
+
     // Remove password from response
     const { password: _, ...userWithoutPassword } = user;
 
@@ -52,11 +54,12 @@ export async function POST(request: Request) {
       token,
     });
   } catch (error) {
+    console.log(error);
+
     return NextResponse.json(
       { error: "Algo deu errado, por favor tente novamente mais tarde" },
       { status: 500 }
     );
 
-    // console.log(error)
   }
 } 

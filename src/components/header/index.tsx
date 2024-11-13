@@ -11,8 +11,10 @@ import Colors from "@/constants/Colors";
 import { FaBell, FaUser } from "react-icons/fa6";
 import { AiOutlineLogin, AiOutlineUserAdd } from "react-icons/ai";
 
+import { useAuth } from "@/hooks/useAuth";
+
 function Header() {
-  const loged = true;
+  const { isAuthenticated } = useAuth();
   const notificationCount = 3;
   const pathname = usePathname();
 
@@ -22,7 +24,7 @@ function Header() {
         <Image alt="logo" src={Logo} className="w-24" />
       </Link>
 
-      {loged ? (
+      {isAuthenticated ? (
         <div className="flex flex-row gap-2">
           <Link
             href={"/dashboard/notifications"}

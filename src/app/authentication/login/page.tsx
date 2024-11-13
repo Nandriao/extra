@@ -24,6 +24,7 @@ import {
 
 import { toast } from '@/hooks/use-toast';
 import { api } from '@/lib/axios';
+import { useAuth } from "@/hooks/useAuth";
 
 const formSchema = z.object({
   phone: z
@@ -66,30 +67,17 @@ export default function Login() {
     },
   });
 
+  const { signIn } = useAuth();
+
   const handleSubmit = async (values: z.infer<typeof formSchema>) => {
     try {
-    setIsSubmitting(true);
+      setIsSubmitting(true);
 
-
-      const response = await api.post<LoginResponse>('/api/auth/login', {
+      await signIn({
         phoneNumber: Number(values.phone),
         password: values.password,
       });
 
-      try {
-        if (response.data.token !== null) {
-          localStorage.setItem("@extra_user_token", JSON.stringify(response.data.token));
-        }
-      } catch (storageError) {
-        console.error('Failed to store token:', storageError);
-        toast({
-          title: "Aviso",
-          description: "Não foi possível salvar suas credenciais. Verifique as configurações do navegador.",
-          variant: "destructive",
-        });
-        return;
-      }
-      
       toast({
         title: "Sucesso!",
         description: "Login realizado com sucesso!",
@@ -99,12 +87,11 @@ export default function Login() {
       router.push('/');
 
     } catch (error: any) {
+      console.log(error);
       
-      console.log(error)
-
       toast({
         title: "Erro",
-        description: error.response.data.error,
+        description: error.response?.data?.error || "Erro ao realizar login",
         variant: "destructive",
       });
     } finally {
