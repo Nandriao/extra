@@ -38,6 +38,9 @@ import OperationCard from "@/components/OperationCard";
 import { useAuth } from "@/hooks/useAuth";
 
 import Loading from "./loading";
+
+import Login from "./authentication/login/page";
+
 import formatNumber from "@/utils/formaterNumber";
 
 export default function Home() {
@@ -51,7 +54,13 @@ export default function Home() {
     return <Loading />;
   } else {
     if (!isAuthenticated) {
-      router.push("/authentication/login");
+      return (
+        <div className="flex flex-col gap-3">
+          <Header />
+          <Login />
+          <Footer />
+        </div>
+      );
     } else {
       return (
         <main className="flex flex-col mb-3 min-h-screen">
@@ -88,7 +97,7 @@ export default function Home() {
                     </Button>
                   </div>
                   <p className="text-2xl transition-all flex flex-row text-gray-600 font-semibold font-[poppins]">
-                    {show ?Number(user?.balance) ?? 0 : "****"} MZN
+                    {show ? Number(user?.balance) ?? 0 : "****"} MZN
                   </p>
                 </div>
               </div>

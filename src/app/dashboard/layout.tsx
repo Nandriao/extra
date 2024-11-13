@@ -2,17 +2,15 @@
 
 import React from "react";
 
-import { useRouter } from "next/navigation";
-
 import Loading from "@/app/loading";
 
 import Header from "@/components/header";
 import Footer from "@/components/footer";
 
 import { useAuth } from "@/hooks/useAuth";
+import Login from "../authentication/login/page";
 
 export default function Dashboard({ children }: { children: React.ReactNode }) {
-  const router = useRouter();
 
   const { isLoading, isAuthenticated } = useAuth();
 
@@ -28,7 +26,13 @@ export default function Dashboard({ children }: { children: React.ReactNode }) {
         </div>
       );
     } else {
-      router.push("/authentication/login");
+      return (
+        <div className="flex flex-col gap-3">
+          <Header />
+          <Login />
+          <Footer />
+        </div>
+      );
     }
   }
 

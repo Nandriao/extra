@@ -6,15 +6,9 @@ import { api } from "../lib/axios";
 
 import { User } from "@prisma/client";
 
-// interface User {
-//   id: string;
-//   fullName: string;
-//   phoneNumber: number;
-// }
-
 interface AuthContextData {
   user: User | null;
-  isAuthenticated: boolean;
+  isAuthenticated: boolean | null;
   signIn: (credentials: SignInCredentials) => Promise<void>;
   signOut: () => void;
   isLoading: boolean;
@@ -33,8 +27,8 @@ export const AuthContext = createContext({} as AuthContextData);
 
 export function AuthProvider({ children }: AuthProviderProps) {
   const [user, setUser] = useState<User | null>(null);
-  const [isAuthenticated, setIsAuthenticated] = useState(false);
-  const [isLoading, setIsLoading] = useState(false);
+  const [isAuthenticated, setIsAuthenticated] = useState<boolean | null>(null);
+  const [isLoading, setIsLoading] = useState<boolean>(false);
 
   useEffect(() => {
     const token = typeof window !== 'undefined' ? localStorage.getItem('@extra_user_token') : null
