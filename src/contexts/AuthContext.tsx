@@ -35,12 +35,13 @@ export function AuthProvider({ children }: AuthProviderProps) {
   const [isLoading, setIsLoading] = useState(false);
 
   useEffect(() => {
-    const token = localStorage.getItem("@extra_user_token");
+    const token = typeof window !== 'undefined' ? localStorage.getItem('@extra_user_token') : null
 
     if (token) {
       setIsLoading(true);
 
       const parsedToken = JSON.parse(token);
+
       api.defaults.headers.authorization = `Bearer ${parsedToken}`;
 
       // Updated POST request to include token in the body

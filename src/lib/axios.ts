@@ -44,7 +44,7 @@ api.interceptors.request.use(
     }
 
     // Get token from localStorage
-    const token = typeof window !== 'undefined' ?? localStorage.getItem('@extra_user_token');
+    const token = typeof window !== 'undefined' ? localStorage.getItem('@extra_user_token') : null
     
     // If no token is found, reject the request
     if (!token) {
