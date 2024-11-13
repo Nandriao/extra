@@ -38,13 +38,14 @@ import OperationCard from "@/components/OperationCard";
 import { useAuth } from "@/hooks/useAuth";
 
 import Loading from "./loading";
+import formatNumber from "@/utils/formaterNumber";
 
 export default function Home() {
   const router = useRouter();
   const [show, setShow] = useState<boolean>(true);
   const [active, setActive] = useState<number>(1);
 
-  const { isLoading, isAuthenticated } = useAuth();
+  const { isLoading, isAuthenticated, user } = useAuth();
 
   if (isLoading) {
     return <Loading />;
@@ -87,15 +88,15 @@ export default function Home() {
                     </Button>
                   </div>
                   <p className="text-2xl transition-all flex flex-row text-gray-600 font-semibold font-[poppins]">
-                    {show ? "0,00" : "****"} MZN
+                    {show ? formatNumber(user?.balance ?? 0) : "****"} MZN
                   </p>
                 </div>
               </div>
 
-              <div className="flex px-3  flex-row justify-between w-full items-center">
+              {/* <div className="flex px-3  flex-row justify-between w-full items-center">
                 <p className="text-gray-500">Operações</p>
                 <ChevronRight color={Colors.GRAY[500]} size={25} />
-              </div>
+              </div> */}
 
               <ScrollArea className="w-full">
                 <div className="flex px-3 w-max gap-2">

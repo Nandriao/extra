@@ -4,11 +4,13 @@ import React, { createContext, useCallback, useEffect, useState } from "react";
 
 import { api } from "../lib/axios";
 
-interface User {
-  id: string;
-  fullName: string;
-  phone: string;
-}
+import { User } from "@prisma/client";
+
+// interface User {
+//   id: string;
+//   fullName: string;
+//   phoneNumber: number;
+// }
 
 interface AuthContextData {
   user: User | null;

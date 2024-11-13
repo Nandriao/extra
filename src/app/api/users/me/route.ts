@@ -32,11 +32,6 @@ export async function POST(request: Request) {
       where: {
         id: decoded.userId,
       },
-      select: {
-        id: true,
-        fullName: true,
-        phoneNumber: true,
-      },
     });
 
     // console.log(user);
@@ -50,7 +45,10 @@ export async function POST(request: Request) {
       );
     }
 
-    return NextResponse.json({ user });
+    const { password: _, ...userWithoutPassword } = user;
+
+
+    return NextResponse.json({ user: userWithoutPassword });
   } catch (error) {
     console.log(error);
     return NextResponse.json({ error: "Token inválido" }, { status: 401 });
