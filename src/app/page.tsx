@@ -53,7 +53,6 @@ export default function Home() {
   }, [isLoading, isAuthenticated, router]);
 
   if (isLoading) return <Loading />;
-  if (!isAuthenticated) return null;
 
   return (
     <main className="flex flex-col mb-3 min-h-screen">
