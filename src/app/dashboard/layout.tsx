@@ -1,8 +1,8 @@
-"use client"
+"use client";
 
 import React from "react";
 
-import { redirect } from "next/navigation";
+import { useRouter } from "next/navigation";
 
 import Loading from "@/app/loading";
 
@@ -11,11 +11,9 @@ import Footer from "@/components/footer";
 
 import { useAuth } from "@/hooks/useAuth";
 
-export default function Dashboard({
-  children,
-}: {
-  children: React.ReactNode;
-}) {
+export default function Dashboard({ children }: { children: React.ReactNode }) {
+  const router = useRouter();
+
   const { isLoading, isAuthenticated } = useAuth();
 
   if (isLoading) {
@@ -30,8 +28,7 @@ export default function Dashboard({
         </div>
       );
     } else {
-      redirect("/");
-
+      router.push("/");
     }
   }
 

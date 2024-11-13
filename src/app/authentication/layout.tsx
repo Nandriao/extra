@@ -2,7 +2,7 @@
 
 import React from "react";
 
-import { redirect } from "next/navigation";
+import { useRouter } from "next/navigation";
 
 import { useAuth } from "@/hooks/useAuth";
 
@@ -15,6 +15,8 @@ export default function RootLayout({
 }: {
   children: React.ReactNode;
 }) {
+  const router = useRouter();
+
   const { isAuthenticated, isLoading } = useAuth();
 
   if (isLoading) {
@@ -29,7 +31,7 @@ export default function RootLayout({
         </div>
       );
     } else {
-      redirect("/authentication/login");
+      router.push("/authentication/login");
     }
   }
 

@@ -4,8 +4,6 @@ import { useRouter } from "next/navigation";
 import React, { useState } from "react";
 import Image from "next/image";
 
-import { redirect } from "next/navigation";
-
 import Header from "@/components/header";
 import Footer from "@/components/footer";
 
@@ -50,7 +48,7 @@ export default function Home() {
 
   React.useEffect(() => {
     if (!isLoading && !isAuthenticated) {
-      redirect("/authentication/login");
+      router.push("/authentication/login");
     }
   }, [isLoading, isAuthenticated, router]);
 
@@ -82,10 +80,7 @@ export default function Home() {
                   {show ? (
                     <AiOutlineEye color={Colors.GRAY[500]} size={25} />
                   ) : (
-                    <AiOutlineEyeInvisible
-                      color={Colors.GRAY[500]}
-                      size={25}
-                    />
+                    <AiOutlineEyeInvisible color={Colors.GRAY[500]} size={25} />
                   )}
                 </Button>
               </div>
