@@ -66,8 +66,9 @@ export async function POST(req: Request) {
       data: subscription
     });
   } catch (error: any) {
+    console.log(error);
     return NextResponse.json(
-      { error: error.message },
+      { error: error.response.data.error },
       { status: 400 }
     );
   }

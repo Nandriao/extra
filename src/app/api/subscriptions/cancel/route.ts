@@ -62,7 +62,7 @@ export async function POST(req: Request) {
     );
     
   } catch (error) {
-    console.error("Erro ao cancelar assinatura:", error);
+    // console.error("Erro ao cancelar assinatura:", error);
     return NextResponse.json(
       { error: "Erro interno ao cancelar assinatura" },
       { status: 500 }
