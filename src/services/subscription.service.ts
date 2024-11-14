@@ -117,7 +117,7 @@ export const subscriptionService = {
 
       return subscription;
     } catch (error) {
-      throw error;
+      console.log(error);
     }
   },
 
@@ -152,7 +152,7 @@ export const subscriptionService = {
 
       return subscription;
     } catch (error) {
-      throw error;
+      console.log(error);
     }
   },
 }; 
